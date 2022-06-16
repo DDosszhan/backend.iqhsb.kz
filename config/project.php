@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'default_locale' => 'ru',
-    'locales' => ['ru', 'en'],
+    'default_locale' => 'kk',
+    'locales' => ['kk', 'ru', 'en'],
     'adminWhiteIps' => [
         'white_list_enable' => env('ADMIN_WHITE_LIST_ENABLE', false),
         'white_list_access_by_token_enable' => env('ADMIN_WHITE_LIST_ACCESS_BY_TOKEN_ENABLE', false),
