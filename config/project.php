@@ -19,7 +19,7 @@ return [
         'enable' => false,
         'i18n_exporter_endpoint' => env('I18N_EXPORTER_ENDPOINT', 'http://127.0.0.1:4000'),
     ],
-    'admin_prefix' => 'admin',
+    'admin_prefix' => 'iqanatcp',
 
     'views' => [
         'defaults' => [
