@@ -24,7 +24,17 @@ return [
         'modules' => [
             'title' => 'Модули',
             'items' => [
-
+                [
+                    'is_tree' => false,
+                    'title' => 'Новости',
+                    'route_name' => 'admin.news',
+                    'item_active_on' => 'admin/news',
+                    'icon' => 'la la-bullhorn',
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
             ],
             'roles' => [
                 'admin',
