@@ -1,0 +1,326 @@
+openapi: 3.0.0
+servers:
+  - description: сервер локальной разработки
+    url: http://localhost:8001/api
+  - description: сервер тестовый
+    url: https://test-backend.iqhsb.kz/api
+  - description: сервер продакшн
+    url: https://backend.iqhsb.kz/api
+info:
+  description: Разработка сайта iQanat School
+  version: "1.0.0"
+  title: iQanat School API
+paths:
+  /news:
+    get:
+      summary: Новости
+      description: Выводит список новостей
+      operationId: getNews
+      responses:
+        '200':
+          description: Успех
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NewsObject'
+  /faqs:
+    get:
+      summary: Частые вопросы
+      description: Выводит список частых вопросов
+      operationId: getFaqs
+      responses:
+        '200':
+          description: Успех
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Faq'
+  /banner/{page}:
+    get:
+      summary: Баннер
+      description: Выводит баннер по id|page
+      operationId: getBanner
+      parameters:
+        - in: path
+          name: page
+          description: Успех
+          required: true
+          schema:
+            $ref: '#/components/schemas/PageList'
+      responses:
+        '200':
+          description: Успех
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Banner'
+  /questionnaires:
+    post:
+      description: Отправка анкеты
+      operationId: postQuestionnaire
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sendQuestionnaire'
+      responses:
+        '204':
+          description: Анкета успешно отправлена.
+        '422':
+          $ref: '#/components/responses/errorValidation'
+  /callbacks:
+    post:
+      description: Отправка заявки на консультацию
+      operationId: postCallback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sendCallback'
+      responses:
+        '204':
+          description: Заявка успешно отправлена.
+
+components:
+  responses:
+    errorValidation:
+      description: Ошибка валидации
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - error
+              - message
+            properties:
+              error:
+                type: array
+                items:
+                  type: object
+                  required: [ title, content ]
+                  properties:
+                    title:
+                      type: array
+                      example:
+                        - The title field is required.
+                        - The title field must be string.
+                    content:
+                      type: array
+                      example:
+                        - The content field is required.
+              message:
+                type: string
+                example: The title field is required. (and 1 more error)
+
+  schemas:
+    NewsObject:
+      type: object
+      required:
+        - id
+        - title
+        - contents
+        - published_at
+        - image_url
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        title:
+          $ref: '#/components/schemas/TranslationString'
+        contents:
+          $ref: '#/components/schemas/TranslationContent'
+        published_at:
+          $ref: '#/components/schemas/DateTime'
+        image_url:
+          $ref: '#/components/schemas/ImageUrl'
+    Faq:
+      type: object
+      required:
+        - id
+        - question
+        - answer
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        question:
+          $ref: '#/components/schemas/TranslationString'
+        answer:
+          $ref: '#/components/schemas/TranslationString'
+    Banner:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - button_text
+        - button_url
+        - image_url
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        title:
+          $ref: '#/components/schemas/TranslationString'
+        content:
+          $ref: '#/components/schemas/TranslationContent'
+        button_text:
+          $ref: '#/components/schemas/TranslationString'
+        button_url:
+          $ref: '#/components/schemas/TranslationUrl'
+        image_url:
+          $ref: '#/components/schemas/ImageUrl'
+    ImageUrl:
+      type: string
+      example: https://ibecsystems.com/css/images/ibec-systems.svg
+    DateTime:
+      type: string
+      format: date-time
+    Id:
+      type: integer
+      minimum: 1
+    TranslationUrl:
+      type: object
+      required:
+        - kk
+        - ru
+        - en
+      properties:
+        kk:
+          type: string
+          example: https://www.google.com/?hl=kk
+        ru:
+          type: string
+          example: https://www.google.com/?hl=ru
+          nullable: true
+        en:
+          type: string
+          example: https://www.google.com/?hl=en
+          nullable: true
+    TranslationString:
+      type: object
+      required:
+        - kk
+        - ru
+        - en
+      properties:
+        kk:
+          type: string
+          example: 255 таңбаға дейін мәтін
+        ru:
+          type: string
+          example: Текст до 255 символов
+          nullable: true
+        en:
+          type: string
+          example: Text up to 255 characters
+          nullable: true
+    TranslationDescription:
+      type: object
+      required:
+        - kk
+        - ru
+        - en
+      properties:
+        kk:
+          type: string
+          example: 255 таңбаға дейін мәтін
+        ru:
+          type: string
+          example: Текст до 1000 символов
+          nullable: true
+        en:
+          type: string
+          example: Text up to 1000 characters
+          nullable: true
+    TranslationContent:
+      type: object
+      required:
+        - kk
+        - ru
+        - en
+      properties:
+        kk:
+          type: string
+          example: <p>65535 таңбаға дейін мәтін</p>
+        ru:
+          type: string
+          example: <p>Текст до 65535 символов</p>
+          nullable: true
+        en:
+          type: string
+          example: <p>Text up to 65535 characters</p>
+          nullable: true
+    PageList:
+      type: string
+      enum:
+        - home
+        - school_life
+        - program
+        - admissions
+      default: home
+    sendQuestionnaire:
+      type: object
+      required:
+        - last_name
+        - first_name
+        - date_of_birth
+        - grade
+        - language
+        - school
+        - phone
+        - email
+        - source_of_info
+        - parent_name
+      properties:
+        last_name:
+          type: string
+          example: Иванов
+        first_name:
+          type: string
+          example: Иван
+        date_of_birth:
+          type: string
+          format: date
+        grade:
+          type: integer
+          enum: [ 10, 11 ]
+          default: 10
+        language:
+          type: string
+          enum: [ Русский, Казахский ]
+          default: Русский
+        school:
+          type: string
+          example: Школа №1
+        phone:
+          type: string
+          example: '77781111111'
+        email:
+          type: string
+          example: user@example.com
+        source_of_info:
+          type: string
+          enum:
+            - Сайт школы
+            - Социальные сети
+            - От знакомых/родственников
+            - Другое
+        parent_name:
+          type: string
+          example: Иванов Иван Неиванович
+    sendCallback:
+      type: object
+      required:
+        - name
+        - phone
+      properties:
+        name:
+          type: string
+          example: Иванов Иван
+        phone:
+          type: string
+          example: '77781111111'
