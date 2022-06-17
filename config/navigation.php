@@ -35,6 +35,17 @@ return [
                         'manager',
                     ],
                 ],
+                [
+                    'is_tree' => false,
+                    'title' => 'Частые вопросы',
+                    'route_name' => 'admin.faqs.index',
+                    'item_active_on' => 'admin/faqs*',
+                    'icon' => 'la la-question-circle',
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
             ],
             'roles' => [
                 'admin',
