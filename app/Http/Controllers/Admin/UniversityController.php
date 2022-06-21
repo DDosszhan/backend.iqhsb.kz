@@ -66,4 +66,11 @@ class UniversityController extends Controller
 
         return $this->updateResponse();
     }
+
+    public function getValidationRulesForUpdate(): array
+    {
+        return array_merge($this->validationRules(), [
+            'image' => ['nullable', 'image'],
+        ]);
+    }
 }
