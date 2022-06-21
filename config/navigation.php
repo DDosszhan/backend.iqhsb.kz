@@ -1,5 +1,7 @@
 <?php
 
+use StarterKit\Core\Ui\Attributes\LineAwesomeIcon;
+
 return [
     'sections' => [
         'manage' => [
@@ -28,7 +30,7 @@ return [
                     'is_tree' => false,
                     'title' => 'Новости',
                     'route_name' => 'admin.news',
-                    'item_active_on' => 'admin/news',
+                    'item_active_on' => 'iqanatcp/news*',
                     'icon' => 'la la-bullhorn',
                     'roles' => [
                         'admin',
@@ -39,8 +41,19 @@ return [
                     'is_tree' => false,
                     'title' => 'Частые вопросы',
                     'route_name' => 'admin.faqs.index',
-                    'item_active_on' => 'admin/faqs*',
+                    'item_active_on' => 'iqanatcp/faqs*',
                     'icon' => 'la la-question-circle',
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
+                [
+                    'is_tree' => false,
+                    'title' => 'Достижения выпускников',
+                    'route_name' => 'admin.graduate-achievements.index',
+                    'item_active_on' => 'iqanatcp/graduate-achievements*',
+                    'icon' => LineAwesomeIcon::USERS,
                     'roles' => [
                         'admin',
                         'manager',
