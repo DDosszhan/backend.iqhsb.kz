@@ -17,6 +17,7 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "spatie/laravel-medialibrary": "^10.3",
         "starter-kit/core": "4.0.*",
         "starter-kit/news": "4.0.*"
     },
