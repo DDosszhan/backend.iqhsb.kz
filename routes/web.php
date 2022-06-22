@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\GraduateAchievementController;
+use App\Http\Controllers\Admin\ConsultationRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,14 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [GraduateAchievementController::class, 'edit'])->name('admin.graduate-achievements.edit');
         Route::post('/{id}/update', [GraduateAchievementController::class, 'update'])->name('admin.graduate-achievements.update');
         Route::get('/{id}/delete', [GraduateAchievementController::class, 'delete'])->name('admin.graduate-achievements.delete');
+    });
+    Route::group(['prefix' => 'consultation-requests'], function () {
+        Route::get('/', [ConsultationRequestController::class, 'index'])->name('admin.consultation-requests.index');
+        Route::get('/list', [ConsultationRequestController::class, 'list'])->name('admin.consultation-requests.list');
+        Route::get('/create', [ConsultationRequestController::class, 'create'])->name('admin.consultation-requests.create');
+        Route::post('/store', [ConsultationRequestController::class, 'store'])->name('admin.consultation-requests.store');
+        Route::get('/{id}/edit', [ConsultationRequestController::class, 'edit'])->name('admin.consultation-requests.edit');
+        Route::post('/{id}/update', [ConsultationRequestController::class, 'update'])->name('admin.consultation-requests.update');
+        Route::get('/{id}/delete', [ConsultationRequestController::class, 'delete'])->name('admin.consultation-requests.delete');
     });
 });
