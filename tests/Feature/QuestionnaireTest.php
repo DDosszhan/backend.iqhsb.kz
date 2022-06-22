@@ -2,16 +2,11 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class QuestionnaireTest extends TestCase
 {
-    use DatabaseMigrations;
-
-    public function test_questionnaires()
+    public function test_add_questionnaire()
     {
         $formData = [
             'last_name' => 'Иванов',
