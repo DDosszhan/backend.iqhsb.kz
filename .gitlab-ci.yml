@@ -1,0 +1,137 @@
+.deploy_template: &deploy_template
+  before_script:
+    ##
+    ## Install ssh-agent if not already installed, it is required by Docker.
+    ## (change apt-get to yum if you use an RPM-based image)
+    ##
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    ##
+    ## Run ssh-agent (inside the build environment)
+    ##
+    - eval $(ssh-agent -s)
+
+    ##
+    ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+    ## We're using tr to fix line endings which makes ed25519 keys work
+    ## without extra base64 encoding.
+    ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+    ##
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    ##
+    ## Create the SSH directory and give it the right permissions
+    ##
+    - mkdir -p ~/.ssh
+    - chmod -R 700 ~/.ssh
+
+    ##
+    ## Store key as file
+    ##
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    ##
+    ## Disable Host Key Checking for SSH
+    ##
+    - echo "StrictHostKeyChecking no" >> ~/.ssh/config
+    - chmod 400 ~/.ssh/config
+
+    ##
+    ## Install deployer
+    ##
+    - curl -L https://github.com/Rishats/deployer/releases/download/v6.6.0/deployer-6.6.0-dev.phar > deployer.phar
+    - chmod +x deployer.phar
+
+.deploy_template_prod: &deploy_template_prod
+  before_script:
+    ##
+    ## Install ssh-agent if not already installed, it is required by Docker.
+    ## (change apt-get to yum if you use an RPM-based image)
+    ##
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    ##
+    ## Run ssh-agent (inside the build environment)
+    ##
+    - eval $(ssh-agent -s)
+
+    ##
+    ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+    ## We're using tr to fix line endings which makes ed25519 keys work
+    ## without extra base64 encoding.
+    ## https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+    ##
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    ##
+    ## Create the SSH directory and give it the right permissions
+    ##
+    - mkdir -p ~/.ssh
+    - chmod -R 700 ~/.ssh
+
+    ##
+    ## Store key as file
+    ##
+    - echo "$SSH_PRIVATE_KEY_PROD" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+
+    ##
+    ## Store public key as file
+    ##
+    # - echo "$SSH_PUBLIC_KEY_PROD" > ~/.ssh/id_rsa.pub
+    # - chmod 644 ~/.ssh/id_rsa.pub
+
+    ##
+    ## Disable Host Key Checking for SSH
+    ##
+    - echo "StrictHostKeyChecking no" >> ~/.ssh/config
+    - chmod 400 ~/.ssh/config
+
+    ##
+    ## Install deployer
+    ##
+    - curl -L https://github.com/Rishats/deployer/releases/download/v6.6.0/deployer-6.6.0-dev.phar > deployer.phar
+    - chmod +x deployer.phar
+
+stages:
+  # - test
+  # - analysis
+  - deploy
+
+sonar:
+  image: skeletondocker/gitlab-ci-sonarqube
+  stage: deploy
+  tags:
+    - sonarqube
+  script:
+    - export VERSION="${CI_PROJECT_NAMESPACE}_${CI_BUILD_ID}_$(date "+%Y-%m-%d-%H:%M:%S")"
+    - sonar-scanner -Dproject.settings=sonar-project.properties -Dsonar.projectVersion=$VERSION -X
+  only:
+    - master
+
+#
+# Runs deploy to host `prod` with verbose output for logs
+#
+deploy to prod:
+  image: composer:1.8.4
+  stage: deploy
+  tags:
+    - deployer
+  <<: *deploy_template_prod
+  script:
+    - ./deployer.phar deploy:unlock production -vvv
+    - ./deployer.phar deploy production -vvv
+  only:
+    - production
+
+#
+# Runs deploy to host `testing` with verbose output for logs
+#
+deploy to testing:
+  image: composer:1.8.4
+  stage: deploy
+  tags:
+    - deployer
+  <<: *deploy_template
+  script:
+    - ./deployer.phar deploy:unlock testing -vvv
+    - ./deployer.phar deploy testing --branch=testing -vvv
+  only:
+    - master
