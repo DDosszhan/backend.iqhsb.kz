@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\FaqController;
+use App\Http\Controllers\Api\GraduateAchievement;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,4 @@ use App\Http\Controllers\Api\FaqController;
 
 Route::get('/news', [NewsController::class, 'index']);
 Route::get('/faqs', [FaqController::class, 'index']);
+Route::get('/graduate-achievements', [GraduateAchievement::class, 'index']);
