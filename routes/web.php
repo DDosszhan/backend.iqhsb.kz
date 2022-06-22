@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\UniversityController;
+use App\Http\Controllers\Admin\GraduateAchievementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,14 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [UniversityController::class, 'edit'])->name('admin.universities.edit');
         Route::post('/{id}/update', [UniversityController::class, 'update'])->name('admin.universities.update');
         Route::get('/{id}/delete', [UniversityController::class, 'delete'])->name('admin.universities.delete');
+    });
+    Route::group(['prefix' => 'graduate-achievements'], function () {
+        Route::get('/', [GraduateAchievementController::class, 'index'])->name('admin.graduate-achievements.index');
+        Route::get('/list', [GraduateAchievementController::class, 'list'])->name('admin.graduate-achievements.list');
+        Route::get('/create', [GraduateAchievementController::class, 'create'])->name('admin.graduate-achievements.create');
+        Route::post('/store', [GraduateAchievementController::class, 'store'])->name('admin.graduate-achievements.store');
+        Route::get('/{id}/edit', [GraduateAchievementController::class, 'edit'])->name('admin.graduate-achievements.edit');
+        Route::post('/{id}/update', [GraduateAchievementController::class, 'update'])->name('admin.graduate-achievements.update');
+        Route::get('/{id}/delete', [GraduateAchievementController::class, 'delete'])->name('admin.graduate-achievements.delete');
     });
 });
