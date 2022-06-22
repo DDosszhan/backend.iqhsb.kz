@@ -2,10 +2,6 @@ openapi: 3.0.0
 servers:
   - description: сервер локальной разработки
     url: http://localhost:8001/api
-  - description: сервер тестовый
-    url: https://test-backend.iqhsb.kz/api
-  - description: сервер продакшн
-    url: https://backend.iqhsb.kz/api
 info:
   description: Разработка сайта iQanat School
   version: "1.0.0"
@@ -18,7 +14,7 @@ paths:
       operationId: getNews
       responses:
         '200':
-          description: Успех
+          description: Запрос успешно выполнен
           content:
             application/json:
               schema:
@@ -32,35 +28,50 @@ paths:
       operationId: getFaqs
       responses:
         '200':
-          description: Успех
+          description: Запрос успешно выполнен
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/Faq'
+  /graduate-achievements:
+    get:
+      summary: Достижения выпускников
+      description: Выводит список достижений выпускников
+      operationId: getGraduateAchievements
+      responses:
+        '200':
+          description: Запрос успешно выполнен
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GraduateAchievement'
   /banner/{page}:
     get:
-      summary: Баннер
+      summary: Баннеры
       description: Выводит баннер по id|page
       operationId: getBanner
       parameters:
         - in: path
           name: page
-          description: Успех
+          description: Запрос успешно выполнен
           required: true
           schema:
             $ref: '#/components/schemas/PageList'
       responses:
         '200':
-          description: Успех
+          description: Запрос успешно выполнен
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Banner'
   /questionnaires:
     post:
-      description: Отправка анкеты
+      summary: Анкета
+      description: Отправка анкеты претендента на поступление
       operationId: postQuestionnaire
       requestBody:
         required: true
@@ -75,6 +86,7 @@ paths:
           $ref: '#/components/responses/errorValidation'
   /callbacks:
     post:
+      summary: Консультация
       description: Отправка заявки на консультацию
       operationId: postCallback
       requestBody:
@@ -151,6 +163,46 @@ components:
           $ref: '#/components/schemas/TranslationString'
         answer:
           $ref: '#/components/schemas/TranslationString'
+    GraduateAchievement:
+      type: object
+      required:
+        - id
+        - graduate_name
+        - description
+        - year
+        - city
+        - image_url
+        - university
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        graduate_name:
+          $ref: '#/components/schemas/TranslationString'
+        description:
+          $ref: '#/components/schemas/TranslationContent'
+        city:
+          $ref: '#/components/schemas/TranslationString'
+        year:
+          type: integer
+          minimum: 1900
+          maxLength: 4
+        image_url:
+          $ref: '#/components/schemas/ImageUrl'
+        university:
+          $ref: '#/components/schemas/University'
+    University:
+      type: object
+      required:
+        - id
+        - name
+        - image_url
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/TranslationString'
+        image_url:
+          $ref: '#/components/schemas/ImageUrl'
     Banner:
       type: object
       required:
