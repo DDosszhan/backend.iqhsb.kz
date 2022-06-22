@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\QuestionnaireController;
 |
 */
 
-Route::get('/news', [NewsController::class, 'index']);
-Route::get('/faqs', [FaqController::class, 'index']);
-Route::get('/graduate-achievements', [GraduateAchievementController::class, 'index']);
-Route::post('/questionnaires', [QuestionnaireController::class, 'store']);
+Route::get('/news', [NewsController::class, 'index'])->name('api.news.index');
+Route::get('/faqs', [FaqController::class, 'index'])->name('api.faqs.index');
+Route::get('/graduate-achievements', [GraduateAchievementController::class, 'index'])->name('api.graduate-achievements.index');
+Route::post('/questionnaires', [QuestionnaireController::class, 'store'])->name('api.questionnaires.store');
