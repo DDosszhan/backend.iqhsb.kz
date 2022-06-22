@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Repositories\Api\GraduateAchievementRepository;
 
-class GraduateAchievement extends Controller
+class GraduateAchievementController extends Controller
 {
     private GraduateAchievementRepository $graduateAchievementRepository;
 
