@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\LocalizationController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\GraduateAchievementController;
@@ -23,3 +24,8 @@ Route::get('/faqs', [FaqController::class, 'index'])->name('api.faqs.index');
 Route::get('/graduate-achievements', [GraduateAchievementController::class, 'index'])->name('api.graduate-achievements.index');
 Route::post('/questionnaires', [QuestionnaireController::class, 'store'])->name('api.questionnaires.store');
 Route::post('/consultation-requests', [ConsultationRequestController::class, 'store'])->name('api.consultation-requests.store');
+
+Route::group(['prefix' => 'localization'], function () {
+    Route::get('/i18n/{locale}', [LocalizationController::class, 'i18n']);
+    Route::get('/i18n_additional_data', [LocalizationController::class, 'i18nAdditionalData']);
+});

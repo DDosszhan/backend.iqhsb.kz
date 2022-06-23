@@ -98,5 +98,25 @@ return [
                 'manager'
             ]
         ],
+        'settings' => [
+            'title' => 'Настройки',
+            'items' => [
+                [
+                    'is_tree' => false,
+                    'title' => 'Локализация',
+                    'route_name' => 'admin.settings.localisation',
+                    'item_active_on' => 'iqanatcp/settings.localisation*',
+                    'icon' => LineAwesomeIcon::TOGGLE_ON,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ]
+                ]
+            ],
+            'roles' => [
+                'admin',
+                'manager',
+            ]
+        ],
     ],
 ];
