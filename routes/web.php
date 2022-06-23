@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\GraduateAchievementController;
 use App\Http\Controllers\Admin\ConsultationRequestController;
+use App\Http\Controllers\Admin\QuestionnaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +56,14 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [ConsultationRequestController::class, 'edit'])->name('admin.consultation-requests.edit');
         Route::post('/{id}/update', [ConsultationRequestController::class, 'update'])->name('admin.consultation-requests.update');
         Route::get('/{id}/delete', [ConsultationRequestController::class, 'delete'])->name('admin.consultation-requests.delete');
+    });
+    Route::group(['prefix' => 'questionnaires'], function () {
+        Route::get('/', [QuestionnaireController::class, 'index'])->name('admin.questionnaires.index');
+        Route::get('/list', [QuestionnaireController::class, 'list'])->name('admin.questionnaires.list');
+        Route::get('/create', [QuestionnaireController::class, 'create'])->name('admin.questionnaires.create');
+        Route::post('/store', [QuestionnaireController::class, 'store'])->name('admin.questionnaires.store');
+        Route::get('/{id}/edit', [QuestionnaireController::class, 'edit'])->name('admin.questionnaires.edit');
+        Route::post('/{id}/update', [QuestionnaireController::class, 'update'])->name('admin.questionnaires.update');
+        Route::get('/{id}/delete', [QuestionnaireController::class, 'delete'])->name('admin.questionnaires.delete');
     });
 });
