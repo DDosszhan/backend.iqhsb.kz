@@ -53,6 +53,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GraduateAchievement'
+  /calendar-events:
+    get:
+      summary: Академический Календарь
+      description: Выводит список событий в календаре
+      operationId: getCalendarEvents
+      responses:
+        '200':
+          description: Запрос успешно выполнен
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CalendarEvent'
   /banner/{page}:
     get:
       summary: Баннеры
@@ -196,6 +210,25 @@ components:
           $ref: '#/components/schemas/ImageUrl'
         university:
           $ref: '#/components/schemas/University'
+    CalendarEvent:
+      type: object
+      required:
+        - id
+        - title
+        - start_date
+        - end_date
+        - image_url
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        title:
+          $ref: '#/components/schemas/TranslationString'
+        start_date:
+          $ref: '#/components/schemas/Date'
+        end_date:
+          $ref: '#/components/schemas/Date'
+        image_url:
+          $ref: '#/components/schemas/ImageUrl'
     University:
       type: object
       required:
@@ -237,6 +270,9 @@ components:
     DateTime:
       type: string
       format: date-time
+    Date:
+      type: string
+      format: date
     Id:
       type: integer
       minimum: 1

@@ -81,6 +81,17 @@ return [
                         'manager',
                     ],
                 ],
+                [
+                    'is_tree' => false,
+                    'title' => 'Академический календарь',
+                    'route_name' => 'admin.calendar-events.index',
+                    'item_active_on' => 'iqanatcp/calendar-events*',
+                    'icon' => LineAwesomeIcon::USER_PLUS,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
             ],
             'roles' => [
                 'admin',
