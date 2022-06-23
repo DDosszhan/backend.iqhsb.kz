@@ -2,10 +2,10 @@ openapi: 3.0.0
 servers:
   - description: сервер локальной разработки
     url: http://localhost:8001/api
-#  - description: сервер тестовый
-#    url: https://test-backend.iqhsb.kz/api
-#  - description: сервер продакшн
-#    url: https://backend.iqhsb.kz/api
+  - description: сервер тестовый
+    url: https://test-backend.iqhsb.kz/api
+  - description: сервер продакшн
+    url: https://backend.iqhsb.kz/api
 info:
   description: Разработка сайта iQanat School
   version: "1.0.0"
