@@ -81,6 +81,17 @@ return [
                         'manager',
                     ],
                 ],
+                [
+                    'is_tree' => false,
+                    'title' => 'Академический календарь',
+                    'route_name' => 'admin.calendar-events.index',
+                    'item_active_on' => 'iqanatcp/calendar-events*',
+                    'icon' => LineAwesomeIcon::USER_PLUS,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
             ],
             'roles' => [
                 'admin',
@@ -96,6 +107,26 @@ return [
             'roles' => [
                 'admin',
                 'manager'
+            ]
+        ],
+        'settings' => [
+            'title' => 'Настройки',
+            'items' => [
+                [
+                    'is_tree' => false,
+                    'title' => 'Локализация',
+                    'route_name' => 'admin.settings.localisation',
+                    'item_active_on' => 'iqanatcp/settings.localisation*',
+                    'icon' => LineAwesomeIcon::TOGGLE_ON,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ]
+                ]
+            ],
+            'roles' => [
+                'admin',
+                'manager',
             ]
         ],
     ],
