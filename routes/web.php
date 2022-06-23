@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Admin\GraduateAchievementController;
 use App\Http\Controllers\Admin\ConsultationRequestController;
 use App\Http\Controllers\Admin\QuestionnaireController;
+use App\Http\Controllers\Admin\CalendarEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,5 +66,14 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [QuestionnaireController::class, 'edit'])->name('admin.questionnaires.edit');
         Route::post('/{id}/update', [QuestionnaireController::class, 'update'])->name('admin.questionnaires.update');
         Route::get('/{id}/delete', [QuestionnaireController::class, 'delete'])->name('admin.questionnaires.delete');
+    });
+    Route::group(['prefix' => 'calendar-events'], function () {
+        Route::get('/', [CalendarEventController::class, 'index'])->name('admin.calendar-events.index');
+        Route::get('/list', [CalendarEventController::class, 'list'])->name('admin.calendar-events.list');
+        Route::get('/create', [CalendarEventController::class, 'create'])->name('admin.calendar-events.create');
+        Route::post('/store', [CalendarEventController::class, 'store'])->name('admin.calendar-events.store');
+        Route::get('/{id}/edit', [CalendarEventController::class, 'edit'])->name('admin.calendar-events.edit');
+        Route::post('/{id}/update', [CalendarEventController::class, 'update'])->name('admin.calendar-events.update');
+        Route::get('/{id}/delete', [CalendarEventController::class, 'delete'])->name('admin.calendar-events.delete');
     });
 });

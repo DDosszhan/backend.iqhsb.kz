@@ -34,13 +34,14 @@ class FaqController extends Controller
 
     public function validationRules(): array
     {
-        $locale = config('app.locale');
+        $defaultLocale = app()->getLocale();
+        $locales = implode(',', config('project.locales'));
 
         return [
-            'question' => ['required', 'array'],
-            "question.$locale" => ['required', 'string', 'max:255'],
-            'answer' => ['required', 'array'],
-            "answer.$locale" => ['required', 'string', 'max:255'],
+            'question' => ['required', "array:$locales"],
+            "question.$defaultLocale" => ['required', 'string', 'max:255'],
+            'answer' => ['required', "array:$locales"],
+            "answer.$defaultLocale" => ['required', 'string', 'max:255'],
             'active' => ['sometimes', 'required', 'accepted'],
         ];
     }
