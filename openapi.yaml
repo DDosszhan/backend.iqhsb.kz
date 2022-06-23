@@ -2,6 +2,10 @@ openapi: 3.0.0
 servers:
   - description: сервер локальной разработки
     url: http://localhost:8001/api
+#  - description: сервер тестовый
+#    url: https://test-backend.iqhsb.kz/api
+#  - description: сервер продакшн
+#    url: https://backend.iqhsb.kz/api
 info:
   description: Разработка сайта iQanat School
   version: "1.0.0"
@@ -70,7 +74,7 @@ paths:
                 $ref: '#/components/schemas/Banner'
   /questionnaires:
     post:
-      summary: Анкета
+      summary: Анкеты
       description: Отправка анкеты претендента на поступление
       operationId: postQuestionnaire
       requestBody:
@@ -84,20 +88,22 @@ paths:
           description: Анкета успешно отправлена.
         '422':
           $ref: '#/components/responses/errorValidation'
-  /callbacks:
+  /consultation-requests:
     post:
-      summary: Консультация
+      summary: Консультации
       description: Отправка заявки на консультацию
-      operationId: postCallback
+      operationId: postConsultationRequest
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/sendCallback'
+              $ref: '#/components/schemas/sendConsultationRequest'
       responses:
         '204':
           description: Заявка успешно отправлена.
+        '422':
+          $ref: '#/components/responses/errorValidation'
 
 components:
   responses:
@@ -325,7 +331,7 @@ components:
         - school
         - phone
         - email
-        - source_of_info
+        - source
         - parent_name
       properties:
         last_name:
@@ -338,7 +344,7 @@ components:
           type: string
           format: date
         grade:
-          type: integer
+          type: string
           enum: [ 10, 11 ]
           default: 10
         language:
@@ -354,7 +360,7 @@ components:
         email:
           type: string
           example: user@example.com
-        source_of_info:
+        source:
           type: string
           enum:
             - Сайт школы
@@ -364,7 +370,7 @@ components:
         parent_name:
           type: string
           example: Иванов Иван Неиванович
-    sendCallback:
+    sendConsultationRequest:
       type: object
       required:
         - name

@@ -59,6 +59,28 @@ return [
                         'manager',
                     ],
                 ],
+                [
+                    'is_tree' => false,
+                    'title' => 'Анкеты',
+                    'route_name' => 'admin.questionnaires.index',
+                    'item_active_on' => 'iqanatcp/questionnaires*',
+                    'icon' => LineAwesomeIcon::USER_PLUS,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
+                [
+                    'is_tree' => false,
+                    'title' => 'Запросы консультации',
+                    'route_name' => 'admin.consultation-requests.index',
+                    'item_active_on' => 'iqanatcp/consultation-requests*',
+                    'icon' => LineAwesomeIcon::USER_PLUS,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
             ],
             'roles' => [
                 'admin',

@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\FaqController;
-use App\Http\Controllers\Api\GraduateAchievement;
+use App\Http\Controllers\Api\GraduateAchievementController;
+use App\Http\Controllers\Api\QuestionnaireController;
+use App\Http\Controllers\Api\ConsultationRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use App\Http\Controllers\Api\GraduateAchievement;
 |
 */
 
-Route::get('/news', [NewsController::class, 'index']);
-Route::get('/faqs', [FaqController::class, 'index']);
-Route::get('/graduate-achievements', [GraduateAchievement::class, 'index']);
+Route::get('/news', [NewsController::class, 'index'])->name('api.news.index');
+Route::get('/faqs', [FaqController::class, 'index'])->name('api.faqs.index');
+Route::get('/graduate-achievements', [GraduateAchievementController::class, 'index'])->name('api.graduate-achievements.index');
+Route::post('/questionnaires', [QuestionnaireController::class, 'store'])->name('api.questionnaires.store');
+Route::post('/consultation-requests', [ConsultationRequestController::class, 'store'])->name('api.consultation-requests.store');
