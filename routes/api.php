@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\GraduateAchievementController;
 use App\Http\Controllers\Api\QuestionnaireController;
 use App\Http\Controllers\Api\ConsultationRequestController;
+use App\Http\Controllers\Api\CalendarEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::get('/faqs', [FaqController::class, 'index'])->name('api.faqs.index');
 Route::get('/graduate-achievements', [GraduateAchievementController::class, 'index'])->name('api.graduate-achievements.index');
 Route::post('/questionnaires', [QuestionnaireController::class, 'store'])->name('api.questionnaires.store');
 Route::post('/consultation-requests', [ConsultationRequestController::class, 'store'])->name('api.consultation-requests.store');
+Route::get('/calendar-events', [CalendarEventController::class, 'index'])->name('api.calendar-events.index');
 
 Route::group(['prefix' => 'localization'], function () {
     Route::get('/i18n/{locale}', [LocalizationController::class, 'i18n']);
