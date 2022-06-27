@@ -46,7 +46,7 @@ class BannerController extends Controller
             'button_text' => ['required', "array:$locales"],
             "button_text.$defaultLocale" => ['required', 'string', 'max:255'],
             'button_url' => ['required', "array:$locales"],
-            "button_url.$defaultLocale" => ['required', 'string', 'max:255', 'url'],
+            "button_url.$defaultLocale" => ['required', 'string', 'max:255'],
             'image' => ['required', 'image'],
         ];
     }
