@@ -67,6 +67,34 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CalendarEvent'
+  /teachers:
+    get:
+      summary: Преподавательский состав
+      description: Выводит список преподавателей
+      operationId: getTeachers
+      responses:
+        '200':
+          description: Запрос успешно выполнен
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Teacher'
+  /partners:
+    get:
+      summary: Попечители и партнеры
+      description: Выводит список партнеров
+      operationId: getPartners
+      responses:
+        '200':
+          description: Запрос успешно выполнен
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Partner'
   /banner/{page}:
     get:
       summary: Баннеры
@@ -227,6 +255,41 @@ components:
           $ref: '#/components/schemas/Date'
         end_date:
           $ref: '#/components/schemas/Date'
+        image_url:
+          $ref: '#/components/schemas/ImageUrl'
+    Teacher:
+      type: object
+      required:
+        - id
+        - name
+        - position
+        - image_url
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          $ref: '#/components/schemas/TranslationString'
+        position:
+          $ref: '#/components/schemas/TranslationString'
+        image_url:
+          $ref: '#/components/schemas/ImageUrl'
+    Partner:
+      type: object
+      required:
+        - id
+        - name
+        - company
+        - description
+        - image_url
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        title:
+          $ref: '#/components/schemas/TranslationString'
+        company:
+          $ref: '#/components/schemas/TranslationString'
+        description:
+          $ref: '#/components/schemas/TranslationString'
         image_url:
           $ref: '#/components/schemas/ImageUrl'
     University:
