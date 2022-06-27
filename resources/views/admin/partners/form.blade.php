@@ -44,7 +44,7 @@
             <legend>Фото партнера <span class="text-danger">*</span></legend>
             <div class="form-group">
                 <input type="file" class="form-input-image-media" id="image" name="image"
-                       accept="image/x-png,image/gif,image/jpeg,image/svg">
+                       accept="image/x-png,image/gif,image/jpeg,image/svg+xml">
                 <p class="help-block"></p>
 
                 @if(isset($item) && $item->getFirstMedia('default'))
