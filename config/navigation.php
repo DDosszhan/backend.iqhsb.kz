@@ -28,6 +28,17 @@ return [
             'items' => [
                 [
                     'is_tree' => false,
+                    'title' => 'Баннеры',
+                    'route_name' => 'admin.banners.index',
+                    'item_active_on' => 'iqanatcp/banners*',
+                    'icon' => LineAwesomeIcon::IMAGE,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
+                [
+                    'is_tree' => false,
                     'title' => 'Новости',
                     'route_name' => 'admin.news',
                     'item_active_on' => 'iqanatcp/news*',

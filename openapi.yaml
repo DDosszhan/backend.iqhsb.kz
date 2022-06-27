@@ -289,7 +289,7 @@ components:
         company:
           $ref: '#/components/schemas/TranslationString'
         description:
-          $ref: '#/components/schemas/TranslationString'
+          $ref: '#/components/schemas/TranslationDescription'
         image_url:
           $ref: '#/components/schemas/ImageUrl'
     University:
