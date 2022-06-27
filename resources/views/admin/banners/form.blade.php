@@ -68,5 +68,25 @@
     </div>
 </form>
 
+<script>
+    $('.editor_short').each(function () {
+        let height = $(this).attr('data-editor-height');
+        editor = CKEDITOR.replace($(this).attr('id'), {
 
+            height: (height) ? height : 150
+        });
 
+        editor.ui.addButton('FileManager', {
+            label: "Менеджер файлов",
+            command: 'showFileManager',
+            toolbar: 'insert',
+            icon: '/core/js/vendors/ckeditor/image_file.png'
+        });
+
+        editor.addCommand("showFileManager", {
+            exec: function (edt) {
+                app.functions.editorShowObjects(edt);
+            }
+        });
+    });
+</script>
