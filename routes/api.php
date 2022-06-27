@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ConsultationRequestController;
 use App\Http\Controllers\Api\CalendarEventController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\PartnerController;
+use App\Http\Controllers\Api\BannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::post('/consultation-requests', [ConsultationRequestController::class, 'st
 Route::get('/calendar-events', [CalendarEventController::class, 'index'])->name('api.calendar-events.index');
 Route::get('/teachers', [TeacherController::class, 'index'])->name('api.teachers.index');
 Route::get('/partners', [PartnerController::class, 'index'])->name('api.partners.index');
+Route::get('/banners/{page}', [BannerController::class, 'show'])->name('api.banners.show');
 
 Route::group(['prefix' => 'localization'], function () {
     Route::get('/i18n/{locale}', [LocalizationController::class, 'i18n']);

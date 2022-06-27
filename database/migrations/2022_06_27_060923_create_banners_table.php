@@ -25,7 +25,8 @@ return new class extends Migration
             $table->index('slug');
         });
 
-        \Illuminate\Support\Facades\DB::table('banners')->insert([
+        $now = Carbon\Carbon::now();
+        Illuminate\Support\Facades\DB::table('banners')->insert([
             [
                 'slug' => 'home',
                 'title' => json_encode([
@@ -33,6 +34,8 @@ return new class extends Migration
                     'ru' => 'IQanat high school of Burabay',
                     'en' => 'IQanat high school of Burabay',
                 ]),
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
             [
                 'slug' => 'school_life',
@@ -41,6 +44,8 @@ return new class extends Migration
                     'ru' => 'Жизнь в школе',
                     'en' => 'Жизнь в школе',
                 ]),
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
             [
                 'slug' => 'program',
@@ -49,6 +54,8 @@ return new class extends Migration
                     'ru' => 'Программа обучения',
                     'en' => 'Программа обучения',
                 ]),
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
             [
                 'slug' => 'admissions',
@@ -57,6 +64,8 @@ return new class extends Migration
                     'ru' => 'Как поступить',
                     'en' => 'Как поступить',
                 ]),
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
         ]);
     }

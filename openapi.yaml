@@ -95,10 +95,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Partner'
-  /banner/{page}:
+  /banners/{page}:
     get:
       summary: Баннеры
-      description: Выводит баннер по id|page
+      description: Выводит баннер по {page}
       operationId: getBanner
       parameters:
         - in: path
