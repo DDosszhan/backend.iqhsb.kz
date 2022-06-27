@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\GraduateAchievementController;
 use App\Http\Controllers\Api\QuestionnaireController;
 use App\Http\Controllers\Api\ConsultationRequestController;
 use App\Http\Controllers\Api\CalendarEventController;
+use App\Http\Controllers\Api\TeacherController;
+use App\Http\Controllers\Api\PartnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,8 @@ Route::get('/graduate-achievements', [GraduateAchievementController::class, 'ind
 Route::post('/questionnaires', [QuestionnaireController::class, 'store'])->name('api.questionnaires.store');
 Route::post('/consultation-requests', [ConsultationRequestController::class, 'store'])->name('api.consultation-requests.store');
 Route::get('/calendar-events', [CalendarEventController::class, 'index'])->name('api.calendar-events.index');
+Route::get('/teachers', [TeacherController::class, 'index'])->name('api.teachers.index');
+Route::get('/partners', [PartnerController::class, 'index'])->name('api.partners.index');
 
 Route::group(['prefix' => 'localization'], function () {
     Route::get('/i18n/{locale}', [LocalizationController::class, 'i18n']);
