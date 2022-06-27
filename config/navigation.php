@@ -50,6 +50,28 @@ return [
                 ],
                 [
                     'is_tree' => false,
+                    'title' => 'Преподавательский состав',
+                    'route_name' => 'admin.teachers.index',
+                    'item_active_on' => 'iqanatcp/teachers*',
+                    'icon' => LineAwesomeIcon::USER_PLUS,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
+                [
+                    'is_tree' => false,
+                    'title' => 'Попечители и партнеры',
+                    'route_name' => 'admin.partners.index',
+                    'item_active_on' => 'iqanatcp/partners*',
+                    'icon' => LineAwesomeIcon::USER_PLUS,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
+                [
+                    'is_tree' => false,
                     'title' => 'Достижения выпускников',
                     'route_name' => 'admin.graduate-achievements.index',
                     'item_active_on' => 'iqanatcp/graduate-achievements*',

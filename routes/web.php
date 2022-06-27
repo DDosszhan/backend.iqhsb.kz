@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\GraduateAchievementController;
 use App\Http\Controllers\Admin\ConsultationRequestController;
 use App\Http\Controllers\Admin\QuestionnaireController;
 use App\Http\Controllers\Admin\CalendarEventController;
+use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\PartnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,5 +77,23 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [CalendarEventController::class, 'edit'])->name('admin.calendar-events.edit');
         Route::post('/{id}/update', [CalendarEventController::class, 'update'])->name('admin.calendar-events.update');
         Route::get('/{id}/delete', [CalendarEventController::class, 'delete'])->name('admin.calendar-events.delete');
+    });
+    Route::group(['prefix' => 'teachers'], function () {
+        Route::get('/', [TeacherController::class, 'index'])->name('admin.teachers.index');
+        Route::get('/list', [TeacherController::class, 'list'])->name('admin.teachers.list');
+        Route::get('/create', [TeacherController::class, 'create'])->name('admin.teachers.create');
+        Route::post('/store', [TeacherController::class, 'store'])->name('admin.teachers.store');
+        Route::get('/{id}/edit', [TeacherController::class, 'edit'])->name('admin.teachers.edit');
+        Route::post('/{id}/update', [TeacherController::class, 'update'])->name('admin.teachers.update');
+        Route::get('/{id}/delete', [TeacherController::class, 'delete'])->name('admin.teachers.delete');
+    });
+    Route::group(['prefix' => 'partners'], function () {
+        Route::get('/', [PartnerController::class, 'index'])->name('admin.partners.index');
+        Route::get('/list', [PartnerController::class, 'list'])->name('admin.partners.list');
+        Route::get('/create', [PartnerController::class, 'create'])->name('admin.partners.create');
+        Route::post('/store', [PartnerController::class, 'store'])->name('admin.partners.store');
+        Route::get('/{id}/edit', [PartnerController::class, 'edit'])->name('admin.partners.edit');
+        Route::post('/{id}/update', [PartnerController::class, 'update'])->name('admin.partners.update');
+        Route::get('/{id}/delete', [PartnerController::class, 'delete'])->name('admin.partners.delete');
     });
 });

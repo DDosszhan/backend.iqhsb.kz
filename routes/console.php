@@ -20,7 +20,6 @@ Artisan::command('inspire', function () {
 
 Artisan::command('s', function () {
     $this->call('serve', [
-        '--host' => '0.0.0.0',
         '--port' => '8001',
     ]);
 });
