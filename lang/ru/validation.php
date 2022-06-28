@@ -133,4 +133,18 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+
+    'attributes' => [
+        'last_name' => 'Фамилия',
+        'first_name' => 'Имя',
+        'name' => 'Имя',
+        'date_of_birth' => 'Дата рождения',
+        'grade' => 'Класс',
+        'language' => 'Язык обучения',
+        'school' => 'Школа',
+        'phone' => 'Телефон',
+        'email' => 'Email',
+        'source' => 'Источник',
+        'parent_name' => 'ФИО представителя'
+    ],
 ];
