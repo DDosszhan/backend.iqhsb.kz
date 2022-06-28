@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\CalendarEventController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\BannerController;
+use App\Http\Controllers\Api\UniversityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/calendar-events', [CalendarEventController::class, 'index'])->name(
 Route::get('/teachers', [TeacherController::class, 'index'])->name('api.teachers.index');
 Route::get('/partners', [PartnerController::class, 'index'])->name('api.partners.index');
 Route::get('/banners/{page}', [BannerController::class, 'show'])->name('api.banners.show');
+Route::get('/universities', [UniversityController::class, 'index'])->name('api.universities.index');
 
 Route::group(['prefix' => 'localization'], function () {
     Route::get('/i18n/{locale}', [LocalizationController::class, 'i18n']);

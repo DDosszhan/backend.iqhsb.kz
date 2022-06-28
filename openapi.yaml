@@ -95,6 +95,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Partner'
+  /universities:
+    get:
+      summary: Университеты
+      description: Выводит список университетов
+      operationId: getUniversities
+      responses:
+        '200':
+          description: Запрос успешно выполнен
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/University'
   /banners/{page}:
     get:
       summary: Баннеры
