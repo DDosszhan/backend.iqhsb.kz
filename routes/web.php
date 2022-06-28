@@ -97,14 +97,13 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::post('/{id}/update', [PartnerController::class, 'update'])->name('admin.partners.update');
         Route::get('/{id}/delete', [PartnerController::class, 'delete'])->name('admin.partners.delete');
     });
-    Route::group(['prefix' => 'banners'], function () {
-        Route::get('/', [BannerController::class, 'index'])->name('admin.banners.index');
-        Route::get('/list', [BannerController::class, 'list'])->name('admin.banners.list');
-        Route::get('/create', [BannerController::class, 'create'])->name('admin.banners.create');
-        Route::post('/store', [BannerController::class, 'store'])->name('admin.banners.store');
-        Route::get('/{id}/edit', [BannerController::class, 'edit'])->name('admin.banners.edit');
-        Route::get('/{page}/edit-page', [BannerController::class, 'editPage'])->name('admin.banners.edit-page');
-        Route::post('/{id}/update', [BannerController::class, 'update'])->name('admin.banners.update');
-        Route::get('/{id}/delete', [BannerController::class, 'delete'])->name('admin.banners.delete');
+    Route::group(['prefix' => 'banners', 'controller' => BannerController::class], function () {
+        Route::get('/', 'index')->name('admin.banners.index');
+        Route::get('/list', 'list')->name('admin.banners.list');
+        Route::get('/create', 'create')->name('admin.banners.create');
+        Route::post('/store', 'store')->name('admin.banners.store');
+        Route::get('/{id}/edit', 'edit')->name('admin.banners.edit');
+        Route::post('/{id}/update', 'update')->name('admin.banners.update');
+        Route::get('/{id}/delete', 'delete')->name('admin.banners.delete');
     });
 });
