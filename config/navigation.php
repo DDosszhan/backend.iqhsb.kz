@@ -28,10 +28,10 @@ return [
             'items' => [
                 [
                     'is_tree' => false,
-                    'title' => 'Баннеры',
-                    'route_name' => 'admin.banners.index',
-                    'item_active_on' => 'iqanatcp/banners*',
-                    'icon' => LineAwesomeIcon::IMAGE,
+                    'title' => 'Новости',
+                    'route_name' => 'admin.news',
+                    'item_active_on' => 'iqanatcp/news*',
+                    'icon' => 'la la-bullhorn',
                     'roles' => [
                         'admin',
                         'manager',
@@ -39,10 +39,10 @@ return [
                 ],
                 [
                     'is_tree' => false,
-                    'title' => 'Новости',
-                    'route_name' => 'admin.news',
-                    'item_active_on' => 'iqanatcp/news*',
-                    'icon' => 'la la-bullhorn',
+                    'title' => 'Баннеры',
+                    'route_name' => 'admin.banners.index',
+                    'item_active_on' => 'iqanatcp/banners*',
+                    'icon' => LineAwesomeIcon::IMAGE,
                     'roles' => [
                         'admin',
                         'manager',
@@ -120,6 +120,17 @@ return [
                     'route_name' => 'admin.calendar-events.index',
                     'item_active_on' => 'iqanatcp/calendar-events*',
                     'icon' => LineAwesomeIcon::USER_PLUS,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
+                [
+                    'is_tree' => false,
+                    'title' => 'Ссылки на соц. сети',
+                    'route_name' => 'admin.social-networks.index',
+                    'item_active_on' => 'iqanatcp/social-networks*',
+                    'icon' => LineAwesomeIcon::EXTERNAL_LINK,
                     'roles' => [
                         'admin',
                         'manager',

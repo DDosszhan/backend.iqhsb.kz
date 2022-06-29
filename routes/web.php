@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CalendarEventController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\SocialNetworkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,5 +106,14 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', 'edit')->name('admin.banners.edit');
         Route::post('/{id}/update', 'update')->name('admin.banners.update');
         Route::get('/{id}/delete', 'delete')->name('admin.banners.delete');
+    });
+    Route::group(['prefix' => 'social-networks', 'controller' => SocialNetworkController::class], function () {
+        Route::get('/', 'index')->name('admin.social-networks.index');
+        Route::get('/list', 'list')->name('admin.social-networks.list');
+        Route::get('/create', 'create')->name('admin.social-networks.create');
+        Route::post('/store', 'store')->name('admin.social-networks.store');
+        Route::get('/{id}/edit', 'edit')->name('admin.social-networks.edit');
+        Route::post('/{id}/update', 'update')->name('admin.social-networks.update');
+        Route::get('/{id}/delete', 'delete')->name('admin.social-networks.delete');
     });
 });
