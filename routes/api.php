@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\PartnerController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\UniversityController;
+use App\Http\Controllers\Api\SocialNetworkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::get('/teachers', [TeacherController::class, 'index'])->name('api.teachers
 Route::get('/partners', [PartnerController::class, 'index'])->name('api.partners.index');
 Route::get('/banners/{page}', [BannerController::class, 'show'])->name('api.banners.show');
 Route::get('/universities', [UniversityController::class, 'index'])->name('api.universities.index');
+Route::get('/social-networks', [SocialNetworkController::class, 'index'])->name('api.social-networks.index');
 
 Route::group(['prefix' => 'localization'], function () {
     Route::get('/i18n/{locale}', [LocalizationController::class, 'i18n']);

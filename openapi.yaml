@@ -109,6 +109,18 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/University'
+  /social-networks:
+    get:
+      summary: Соц. сети
+      description: Выводит список соц. сетей
+      operationId: getSocialNetworks
+      responses:
+        '200':
+          description: Запрос успешно выполнен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialNetworks'
   /banners/{page}:
     get:
       summary: Баннеры
@@ -319,6 +331,16 @@ components:
           $ref: '#/components/schemas/TranslationString'
         image_url:
           $ref: '#/components/schemas/ImageUrl'
+    SocialNetworks:
+      type: object
+      required:
+        - facebook
+        - instagram
+      properties:
+        facebook:
+          $ref: '#/components/schemas/SocialNetworkUrl'
+        instagram:
+          $ref: '#/components/schemas/SocialNetworkUrl'
     Banner:
       type: object
       required:
@@ -344,6 +366,11 @@ components:
     ImageUrl:
       type: string
       example: https://ibecsystems.com/css/images/ibec-systems.svg
+    SocialNetworkUrl:
+      type: string
+      enum:
+        - https://ru-ru.facebook.com/ibecsystems
+        - https://www.instagram.com/ibecsystems
     DateTime:
       type: string
       format: date-time
