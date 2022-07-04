@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Api;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use StarterKit\News\Models\News;
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,9 +46,14 @@ class NewsRepository extends BaseApiRepository
             ->where('published_at', '<=', now())
             ->with('mainImage')
             ->first();
-            $model->image_url = $model->mainImage ? $model->mainImage->url : null;
-            $model->makeHidden('mainImage');
 
-            return $model;
+        if (!$model) {
+            throw new ModelNotFoundException("News with id = '$id' Not Found");
+        }
+
+        $model->image_url = $model->mainImage ? $model->mainImage->url : null;
+        $model->makeHidden('mainImage');
+
+        return $model;
     }
 }
