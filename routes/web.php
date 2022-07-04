@@ -116,4 +116,13 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::post('/{id}/update', 'update')->name('admin.social-networks.update');
         Route::get('/{id}/delete', 'delete')->name('admin.social-networks.delete');
     });
+    Route::group(['prefix' => 'pages', 'controller' => \App\Http\Controllers\Admin\PageController::class], function () {
+        Route::get('/', 'index')->name('admin.pages.index');
+        Route::get('/list', 'list')->name('admin.pages.list');
+        Route::get('/create', 'create')->name('admin.pages.create');
+        Route::post('/store', 'store')->name('admin.pages.store');
+        Route::get('/{id}/edit', 'edit')->name('admin.pages.edit');
+        Route::post('/{id}/update', 'update')->name('admin.pages.update');
+        Route::get('/{id}/delete', 'delete')->name('admin.pages.delete');
+    });
 });
