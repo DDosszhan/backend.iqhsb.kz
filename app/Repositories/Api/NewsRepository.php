@@ -19,7 +19,6 @@ class NewsRepository extends BaseApiRepository
         return $this->model->select([
             'id',
             'title',
-            'contents',
             'published_at',
         ])
             ->where('site_display', true)
@@ -31,5 +30,24 @@ class NewsRepository extends BaseApiRepository
                 $model->image_url = $image ? $image->url : null;
                 $model->makeHidden('mainImage');
             });
+    }
+
+    public function getById(int $id)
+    {
+        $model = $this->model->select([
+            'id',
+            'title',
+            'contents',
+            'published_at',
+        ])
+            ->where('id', $id)
+            ->where('site_display', true)
+            ->where('published_at', '<=', now())
+            ->with('mainImage')
+            ->first();
+            $model->image_url = $model->mainImage ? $model->mainImage->url : null;
+            $model->makeHidden('mainImage');
+
+            return $model;
     }
 }

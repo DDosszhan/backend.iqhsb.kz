@@ -7,16 +7,22 @@ use App\Repositories\Api\NewsRepository;
 
 class NewsController extends Controller
 {
-    private NewsRepository $faqRepository;
+    private NewsRepository $repository;
 
-    public function __construct(NewsRepository $faqRepository)
+    public function __construct(NewsRepository $repository)
     {
-        $this->faqRepository = $faqRepository;
+        $this->repository = $repository;
     }
 
     public function index()
     {
-        $response = $this->faqRepository->get();
+        $response = $this->repository->get();
+        return response()->json($response);
+    }
+
+    public function show(int $id)
+    {
+        $response = $this->repository->getById($id);
         return response()->json($response);
     }
 }

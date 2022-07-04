@@ -22,9 +22,27 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/NewsObject'
+                $ref: '#/components/schemas/NewsList'
+  /news/{id}:
+    get:
+      summary: Новость
+      description: Выводит новость по {id}
+      operationId: getOneNews
+      parameters:
+        - in: path
+          name: id
+          description: Запрос успешно выполнен
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: Запрос успешно выполнен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewsObject'
   /faqs:
     get:
       summary: Частые вопросы
@@ -222,6 +240,19 @@ components:
           $ref: '#/components/schemas/TranslationContent'
         published_at:
           $ref: '#/components/schemas/DateTime'
+        image_url:
+          $ref: '#/components/schemas/ImageUrl'
+    NewsList:
+      type: object
+      required:
+        - id
+        - title
+        - image_url
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        title:
+          $ref: '#/components/schemas/TranslationString'
         image_url:
           $ref: '#/components/schemas/ImageUrl'
     Faq:
