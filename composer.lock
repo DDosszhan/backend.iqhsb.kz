@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba575165a99bb051f48c6ec3f6cbf7e0",
+    "content-hash": "f8c577d37f16606bce3ac61b01b99740",
     "packages": [
         {
             "name": "brick/math",
@@ -4450,50 +4450,6 @@
             ],
             "description": "News for StarterKit Core",
             "time": "2022-06-22T13:54:55+06:00"
-        },
-        {
-            "name": "starter-kit/pages",
-            "version": "v4.0.0",
-            "source": {
-                "type": "git",
-                "url": "git@gitlab.ibecsystems.kz:starter-kit/pages.git",
-                "reference": "46d6071560eb9c6721a1fcb73ceb05cbf2a07c01"
-            },
-            "dist": {
-                "type": "tar",
-                "url": "https://gitlab.ibecsystems.kz/dist/starter-kit/pages/starter-kit-pages-46d6071560eb9c6721a1fcb73ceb05cbf2a07c01-zip-c327b5.tar",
-                "reference": "46d6071560eb9c6721a1fcb73ceb05cbf2a07c01",
-                "shasum": "68da429a310e17f6ff60f098081f906970a30472"
-            },
-            "require": {
-                "cviebrock/eloquent-sluggable": "^9.0",
-                "spatie/laravel-translatable": "^6.0",
-                "starter-kit/core": "4.0.*"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "StarterKit\\Pages\\PagesServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "StarterKit\\Pages\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bishkek Development Team",
-                    "email": "rihasultanov@gmail.com"
-                }
-            ],
-            "description": "Static pages for starterKit Core",
-            "time": "2022-05-23T10:51:11+06:00"
         },
         {
             "name": "symfony/console",
