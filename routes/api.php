@@ -26,7 +26,7 @@ use App\Http\Controllers\Api\SocialNetworkController;
 */
 
 Route::get('/news', [NewsController::class, 'index'])->name('api.news.index');
-Route::get('/news/{id}', [NewsController::class, 'show'])->name('api.news.show');
+Route::get('/news/{id}', [NewsController::class, 'show'])->name('api.news.show')->where('id', '[0-9]+');
 Route::get('/faqs', [FaqController::class, 'index'])->name('api.faqs.index');
 Route::get('/graduate-achievements', [GraduateAchievementController::class, 'index'])->name('api.graduate-achievements.index');
 Route::post('/questionnaires', [QuestionnaireController::class, 'store'])->name('api.questionnaires.store');
