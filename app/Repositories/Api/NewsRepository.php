@@ -19,6 +19,7 @@ class NewsRepository extends BaseApiRepository
     {
         return $this->model->select([
             'id',
+            'slug',
             'title',
             'published_at',
         ])
@@ -33,22 +34,23 @@ class NewsRepository extends BaseApiRepository
             });
     }
 
-    public function getById(int $id)
+    public function getBySlug(string $slug)
     {
         $model = $this->model->select([
             'id',
+            'slug',
             'title',
             'contents',
             'published_at',
         ])
-            ->where('id', $id)
+            ->where('slug', $slug)
             ->where('site_display', true)
             ->where('published_at', '<=', now())
             ->with('mainImage')
             ->first();
 
         if (!$model) {
-            throw new ModelNotFoundException("News with id = '$id' Not Found");
+            throw new ModelNotFoundException("News Not Found");
         }
 
         $model->image_url = $model->mainImage ? $model->mainImage->url : null;

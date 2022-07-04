@@ -23,19 +23,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NewsList'
-  /news/{id}:
+  /news/{slug}:
     get:
       summary: Новость
-      description: Выводит новость по {id}
+      description: Выводит новость по {slug}
       operationId: getOneNews
       parameters:
         - in: path
-          name: id
+          name: slug
           description: Запрос успешно выполнен
           required: true
           schema:
-            type: integer
-            minimum: 1
+            type: string
+            maxLength: 255
       responses:
         '200':
           description: Запрос успешно выполнен
