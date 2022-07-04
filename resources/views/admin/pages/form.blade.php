@@ -26,6 +26,12 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="slug">Машинное имя</label>
+                        <input type="text" class="form-control" id="slug" name="slug" placeholder=""  @if(isset($item)) value="{{$item->slug}}" @endif disabled>
+                        <p class="help-block"></p>
+                    </div>
+
+                    <div class="form-group">
                         <label for="content.{{$locale}}">Содержание ({{ $locale }}) <span class="text-danger">*</span></label>
                         <textarea type="text" class="form-control editor" id="content.{{$locale}}"
                                   name="content[{{ $locale }}]">@isset($item){{ $item->getTranslation('content', $locale) }}@endisset</textarea>
