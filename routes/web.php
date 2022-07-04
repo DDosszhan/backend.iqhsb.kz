@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\SocialNetworkController;
 */
 
 Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web', 'adminMiddleware']], function () {
+    Route::redirect('/', config('project.admin_prefix') . '/news');
+
     Route::group(['prefix' => 'faqs'], function () {
         Route::get('/', [FaqController::class, 'index'])->name('admin.faqs.index');
         Route::get('/list', [FaqController::class, 'list'])->name('admin.faqs.list');
