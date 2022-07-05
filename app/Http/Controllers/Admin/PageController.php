@@ -58,7 +58,7 @@ class PageController extends Controller
         ];
     }
 
-    public function page(string $page, Request $request): Factory|View|Application
+    public function show(string $page, Request $request): Factory|View|Application
     {
         $item = $this->repository->getModel()->where('slug', $page)->first();
         if (!$item) throw new NotFoundHttpException();
@@ -69,7 +69,7 @@ class PageController extends Controller
             'routeList' => $this->routeList,
             'routeCreate' => $this->routeCreate,
             'viewForm' => $this->viewForm,
-            'formAction' => $this->viewForm,
+            'formAction' => route($this->routeUpdate, $item->id),
             'buttonSubmit' => $this->buttonSubmitEdit,
             'item' => $item,
             'blocks' => $blocks,

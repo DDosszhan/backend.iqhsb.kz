@@ -123,9 +123,9 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/list', 'list')->name('admin.pages.list');
         Route::get('/create', 'create')->name('admin.pages.create');
         Route::post('/store', 'store')->name('admin.pages.store');
+        Route::get('/{page}', 'show')->name('admin.pages.show');
         Route::get('/{id}/edit', 'edit')->name('admin.pages.edit');
         Route::post('/{id}/update', 'update')->name('admin.pages.update');
         Route::get('/{id}/delete', 'delete')->name('admin.pages.delete');
-        Route::get('/{page}', 'page')->name('admin.pages.page');
     });
 });
