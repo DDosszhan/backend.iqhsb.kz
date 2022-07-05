@@ -158,6 +158,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Banner'
+  /pages/{page}:
+    get:
+      summary: Контент
+      description: Выводит контент по {page}
+      operationId: getPages
+      parameters:
+        - in: path
+          name: page
+          description: Запрос успешно выполнен
+          required: true
+          schema:
+            $ref: '#/components/schemas/PageList'
+      responses:
+        '200':
+          description: Запрос успешно выполнен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
   /questionnaires:
     post:
       summary: Анкеты
@@ -394,6 +413,37 @@ components:
           $ref: '#/components/schemas/TranslationUrl'
         image_url:
           $ref: '#/components/schemas/ImageUrl'
+    Page:
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - blocks
+        - image_url
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        title:
+          $ref: '#/components/schemas/TranslationString'
+        content:
+          $ref: '#/components/schemas/TranslationContent'
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Block'
+        image_url:
+          $ref: '#/components/schemas/ImageUrl'
+    Block:
+      type: object
+      required:
+        - title
+        - content
+      properties:
+        title:
+          $ref: '#/components/schemas/TranslationString'
+        content:
+          $ref: '#/components/schemas/TranslationDescription'
     ImageUrl:
       type: string
       example: https://ibecsystems.com/css/images/ibec-systems.svg
