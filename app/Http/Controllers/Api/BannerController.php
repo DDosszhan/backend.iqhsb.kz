@@ -20,9 +20,9 @@ class BannerController extends Controller
         return response()->json($response);
     }
 
-    public function show($page)
+    public function show($slug)
     {
-        $response = $this->bannerRepository->getBanner($page);
+        $response = $this->bannerRepository->getBanner($slug);
         return response()->json($response);
     }
 }

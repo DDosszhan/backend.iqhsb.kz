@@ -139,14 +139,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SocialNetworks'
-  /banners/{page}:
+  /banners/{slug}:
     get:
       summary: Баннеры
-      description: Выводит баннер по {page}
+      description: Выводит баннер по {slug}
       operationId: getBanner
       parameters:
         - in: path
-          name: page
+          name: slug
           description: Запрос успешно выполнен
           required: true
           schema:
@@ -158,14 +158,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Banner'
-  /pages/{page}:
+  /pages/{slug}:
     get:
       summary: Контент
-      description: Выводит контент по {page}
+      description: Выводит контент по {slug}
       operationId: getPages
       parameters:
         - in: path
-          name: page
+          name: slug
           description: Запрос успешно выполнен
           required: true
           schema:

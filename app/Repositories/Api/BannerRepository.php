@@ -33,14 +33,14 @@ class BannerRepository extends BaseApiRepository
             });
     }
 
-    public function getBanner(string $page)
+    public function getBanner(string $slug)
     {
         $banner = $this->model
             ->select(['id', 'title', 'content', 'button_text', 'button_url'])
-            ->where('slug', $page)->first();
+            ->where('slug', $slug)->first();
 
         if (!$banner) {
-            throw new ModelNotFoundException("Model with page '$page' Not Found");
+            throw new ModelNotFoundException("Model with page '$slug' Not Found");
         }
 
         $banner->image_url = $banner->getFirstMediaUrl('default');

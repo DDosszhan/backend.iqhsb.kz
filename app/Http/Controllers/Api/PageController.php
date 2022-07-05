@@ -14,9 +14,9 @@ class PageController extends Controller
         $this->repository = $repository;
     }
 
-    public function show($page)
+    public function show($slug)
     {
-        $response = $this->repository->getPage($page);
+        $response = $this->repository->getPage($slug);
         return response()->json($response);
     }
 }

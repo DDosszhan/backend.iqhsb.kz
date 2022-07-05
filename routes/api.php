@@ -35,8 +35,8 @@ Route::post('/consultation-requests', [ConsultationRequestController::class, 'st
 Route::get('/calendar-events', [CalendarEventController::class, 'index'])->name('api.calendar-events.index');
 Route::get('/teachers', [TeacherController::class, 'index'])->name('api.teachers.index');
 Route::get('/partners', [PartnerController::class, 'index'])->name('api.partners.index');
-Route::get('/banners/{page}', [BannerController::class, 'show'])->name('api.banners.show');
-Route::get('/pages/{page}', [PageController::class, 'show'])->name('api.pages.show');
+Route::get('/banners/{slug}', [BannerController::class, 'show'])->name('api.banners.show');
+Route::get('/pages/{slug}', [PageController::class, 'show'])->name('api.pages.show');
 Route::get('/universities', [UniversityController::class, 'index'])->name('api.universities.index');
 Route::get('/social-networks', [SocialNetworkController::class, 'index'])->name('api.social-networks.index');
 

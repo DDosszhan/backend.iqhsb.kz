@@ -15,19 +15,19 @@ class PageRepository extends BaseApiRepository
         parent::__construct($model);
     }
 
-    public function getPage(string $page)
+    public function getPage(string $slug)
     {
-        $pageModel = $this->model
+        $page = $this->model
             ->select(['id', 'title', 'content', 'blocks'])
-            ->where('slug', $page)->first();
+            ->where('slug', $slug)->first();
 
-        if (!$pageModel) {
-            throw new ModelNotFoundException("Model with page '$page' Not Found");
+        if (!$page) {
+            throw new ModelNotFoundException("Model with page '$slug' Not Found");
         }
 
-        $pageModel->image_url = $pageModel->getFirstMediaUrl('default');
-        $pageModel->makeHidden('media');
+        $page->image_url = $page->getFirstMediaUrl('default');
+        $page->makeHidden('media');
 
-        return $pageModel;
+        return $page;
     }
 }
