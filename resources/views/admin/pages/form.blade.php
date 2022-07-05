@@ -39,25 +39,27 @@
                     </div>
 
                     {{-- range() - создает массив --}}
-                    @foreach(range(0,2) as $num)
-                        <fieldset>
-                            <legend>Блок {{ $num+1 }} ({{ $locale }})</legend>
+                    @if (isset($blocks) && $blocks > 0)
+                        @foreach(range(0,$blocks-1) as $num)
+                            <fieldset>
+                                <legend><b>Блок {{ $num+1 }} ({{ $locale }})</b></legend>
 
-                            <div class="form-group">
-                                <label for="blocks.{{ $num }}.title.{{$locale}}">Заголовок</label>
-                                <input type="text" class="form-control" id="blocks.{{ $num }}.title.{{$locale}}" name="blocks[{{ $num }}][title][{{ $locale }}]"
-                                       @if(isset($item) && isset($item->blocks[$num])) value="{{ $item->blocks[$num]['title'][$locale] }}" @endif>
-                                <p class="help-block"></p>
-                            </div>
+                                <div class="form-group">
+                                    <label for="blocks.{{ $num }}.title.{{$locale}}">Заголовок</label>
+                                    <input type="text" class="form-control" id="blocks.{{ $num }}.title.{{$locale}}" name="blocks[{{ $num }}][title][{{ $locale }}]"
+                                           @if(isset($item) && isset($item->blocks[$num])) value="{{ $item->blocks[$num]['title'][$locale] }}" @endif>
+                                    <p class="help-block"></p>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="blocks.{{ $num }}.content.{{$locale}}">Содержание</label>
-                                <textarea type="text" class="form-control" id="blocks.{{ $num }}.content.{{$locale}}" rows="5"
-                                          name="blocks[{{ $num }}][content][{{ $locale }}]">@if(isset($item) && isset($item->blocks[$num])){{ $item->blocks[$num]['content'][$locale] }}@endif</textarea>
-                                <p class="help-block"></p>
-                            </div>
-                        </fieldset>
-                    @endforeach
+                                <div class="form-group">
+                                    <label for="blocks.{{ $num }}.content.{{$locale}}">Содержание</label>
+                                    <textarea type="text" class="form-control" id="blocks.{{ $num }}.content.{{$locale}}" rows="5"
+                                              name="blocks[{{ $num }}][content][{{ $locale }}]">@if(isset($item) && isset($item->blocks[$num])){{ $item->blocks[$num]['content'][$locale] }}@endif</textarea>
+                                    <p class="help-block"></p>
+                                </div>
+                            </fieldset>
+                        @endforeach
+                    @endif
 
                 </fieldset>
             </div>

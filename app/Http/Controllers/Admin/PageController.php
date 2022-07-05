@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\PageRepository;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use StarterKit\Core\Traits\AdminBase;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends Controller
 {
@@ -52,6 +56,25 @@ class PageController extends Controller
             "blocks.*.content.$defaultLocale" => ['nullable', 'string', 'max:65535'],
             'image' => ['required', 'image'],
         ];
+    }
+
+    public function page(string $page, Request $request): Factory|View|Application
+    {
+        $item = $this->repository->getModel()->where('slug', $page)->first();
+        if (!$item) throw new NotFoundHttpException();
+        $blocks = $request->has('blocks') ? (int)$request->input('blocks') : count($item->blocks ?? []);
+
+        return view("admin.pages.show", [
+            'title' => $item->title,
+            'routeList' => $this->routeList,
+            'routeCreate' => $this->routeCreate,
+            'viewForm' => $this->viewForm,
+            'formAction' => $this->viewForm,
+            'buttonCancel' => $this->buttonCancel,
+            'buttonSubmit' => $this->buttonSubmitEdit,
+            'item' => $item,
+            'blocks' => $blocks,
+        ]);
     }
 
     public function store(Request $request): JsonResponse
