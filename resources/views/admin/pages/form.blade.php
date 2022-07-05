@@ -81,8 +81,10 @@
             </div>
         </fieldset>
 
-        <button type="button" class="btn btn-accent btn-sm float-right"
-                data-dismiss="modal">{{ $buttonCancel }}</button>
+        @isset($buttonCancel)
+            <button type="button" class="btn btn-accent btn-sm float-right"
+                    data-dismiss="modal">{{ $buttonCancel }}</button>
+        @endisset
         <button type="submit" class="btn btn-brand btn-sm">{{ $buttonSubmit }}</button>
     </div>
 </form>

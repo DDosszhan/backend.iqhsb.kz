@@ -70,7 +70,6 @@ class PageController extends Controller
             'routeCreate' => $this->routeCreate,
             'viewForm' => $this->viewForm,
             'formAction' => $this->viewForm,
-            'buttonCancel' => $this->buttonCancel,
             'buttonSubmit' => $this->buttonSubmitEdit,
             'item' => $item,
             'blocks' => $blocks,
