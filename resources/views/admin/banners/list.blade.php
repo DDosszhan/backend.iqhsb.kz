@@ -1,9 +1,9 @@
 @foreach($items as $item)
-    @include($viewItem, ['routeEdit' => $routeEdit, 'routeDelete' => $routeDelete])
+    @include($config('view.item'), ['config' => $config])
 @endforeach
 
 @if(!$items->count())
     <tr>
-        <td colspan="{{ $tableColumnCount }}" class="text-center">Данных не найдено</td>
+        <td colspan="100" class="text-center">Данных не найдено</td>
     </tr>
 @endif

@@ -14,7 +14,7 @@
     <td class="align-middle">{{ $item->button_url }}</td>
 
     <td class="text-center align-middle">
-        <a href="#" data-url="{{ route($routeEdit, ['id' => $item->id ]) }}" class="handle-click" data-type="modal" data-modal="largeModal">
+        <a href="#" data-url="{{ route($config('route.edit'), ['id' => $item->id ]) }}" class="handle-click" data-type="modal" data-modal="largeModal">
             <i class="la la-edit"></i>
         </a>
 

@@ -6,31 +6,51 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Admin\BannerRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use StarterKit\Core\Repositories\BaseRepository;
+use StarterKit\Core\Traits\AdminBase;
 
 class BannerController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
-    public function __construct(BannerRepository $bannerRepository)
+    protected BaseRepository $repository;
+
+    public function __construct(BannerRepository $repository)
     {
-        $this->repository = $bannerRepository;
+        $this->repository = $repository;
+    }
 
-        $this->title = 'Баннеры';
-        $this->titleCreate = 'Добавить баннер';
-        $this->titleEdit = 'Редактировать баннер';
-        $this->tableColumnCount = 7;
-
-        $this->routeList = 'admin.banners.list';
-        $this->routeCreate = 'admin.banners.create';
-        $this->routeStore = 'admin.banners.store';
-        $this->routeEdit = 'admin.banners.edit';
-        $this->routeUpdate = 'admin.banners.update';
-        $this->routeDelete = 'admin.banners.delete';
-
-        $this->viewIndex = 'admin.banners.index';
-        $this->viewList = 'admin.banners.list';
-        $this->viewForm = 'admin.banners.form';
-        $this->viewItem = 'admin.banners.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Баннер',
+                'create' => 'Добавить баннер',
+                'edit' => 'Редактировать баннер',
+            ],
+            'route' => [
+                'list' => 'admin.banners.list',
+                'create' => 'admin.banners.create',
+                'store' => 'admin.banners.store',
+                'edit' => 'admin.banners.edit',
+                'update' => 'admin.banners.update',
+                'delete' => 'admin.banners.delete',
+            ],
+            'view' => [
+                'index' => 'admin.banners.index',
+                'list' => 'admin.banners.list',
+                'form' => 'admin.banners.form',
+                'item' => 'admin.banners.item',
+            ],
+            'button' => [
+                'create' => 'Добавить',
+                'edit' => 'Редактировать',
+                'cancel' => 'Отменить',
+            ],
+            'cropper' => [
+                'aspectRatio' => 1920 / 1080,
+            ],
+        ];
     }
 
     public function validationRules(): array

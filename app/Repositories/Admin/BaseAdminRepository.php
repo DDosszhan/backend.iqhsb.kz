@@ -2,9 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Repositories\BaseRepository;
-
-class BaseAdminRepository extends BaseRepository
+class BaseAdminRepository extends \StarterKit\Core\Repositories\BaseRepository
 {
     //
 }
