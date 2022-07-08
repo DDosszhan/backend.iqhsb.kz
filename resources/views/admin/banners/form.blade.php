@@ -1,6 +1,7 @@
 <form action="{{ $formAction }}" method="post" class="ajax"
       data-ui-block-type="element" data-ui-block-element="#largeModal .modal-body" id="ajaxForm">
 
+    @include('core::fields.cropper')
 
     <ul class="nav nav-tabs" role="tablist" style="margin-top: 5px;">
         @foreach(config('project.locales') as $count => $locale)
@@ -13,8 +14,6 @@
     </ul>
 
     <div class="tab-content">
-        @include('core::fields.cropper')
-
         @foreach(config('project.locales') as $count => $locale)
             <div role="tabpanel" class="tab-pane @if($count == 0) active @endif" id="tab-{{ $count }}">
                 <fieldset>

@@ -6,14 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Admin\BannerRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use StarterKit\Core\Repositories\BaseRepository;
 use StarterKit\Core\Traits\AdminBase;
 
 class BannerController extends Controller
 {
     use AdminBase;
-
-    protected BaseRepository $repository;
 
     public function __construct(BannerRepository $repository)
     {
@@ -43,7 +40,9 @@ class BannerController extends Controller
                 'item' => 'admin.banners.item',
             ],
             'cropper' => [
-                'aspectRatio' => 16 / 9,
+                'width' => 1280,
+                'height' => 720,
+                'quality' => 0.8,
             ],
         ];
     }

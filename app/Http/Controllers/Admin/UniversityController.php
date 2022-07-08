@@ -12,9 +12,9 @@ class UniversityController extends Controller
 {
     use AdminBase;
 
-    public function __construct(UniversityRepository $universityRepository)
+    public function __construct(UniversityRepository $repository)
     {
-        $this->repository = $universityRepository;
+        $this->repository = $repository;
     }
 
     public function setConfig(): array
@@ -39,6 +39,11 @@ class UniversityController extends Controller
                 'form' => 'admin.universities.form',
                 'item' => 'admin.universities.item',
             ],
+            'cropper' => [
+                'width' => 1000,
+                'height' => 500,
+                'quality' => 0.8,
+            ],
         ];
     }
 
@@ -50,7 +55,7 @@ class UniversityController extends Controller
         return [
             'name' => ['required', "array:$locales"],
             "name.$defaultLocale" => ['required', 'string', 'max:255'],
-            'image' => ['required', 'image'],
+            'cropper' => ['required', 'image'],
         ];
     }
 
@@ -58,7 +63,7 @@ class UniversityController extends Controller
     {
         $validatedData = $this->validateStoreRequest($request->all());
         $this->item = $this->repository->getModel()->create($validatedData);
-        $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
 
         return $this->storeResponse();
     }
@@ -69,8 +74,8 @@ class UniversityController extends Controller
 
         $validatedData = $this->validateUpdateRequest($request->all());
         $this->item->update($validatedData);
-        if ($request->hasFile('image')) {
-            $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        if ($request->hasFile('cropper')) {
+            $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
         }
 
         return $this->updateResponse();
@@ -79,7 +84,7 @@ class UniversityController extends Controller
     public function getValidationRulesForUpdate(): array
     {
         return array_merge($this->validationRules(), [
-            'image' => ['nullable', 'image'],
+            'cropper' => ['nullable', 'image'],
         ]);
     }
 }
