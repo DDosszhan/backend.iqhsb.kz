@@ -130,6 +130,7 @@
             minContainerHeight: 400,
             aspectRatio: {{ $config('cropper.aspectRatio') }},
             viewMode: 2,
+            autoCropArea: 1,
         });
         document.getElementById('crop_button').classList.remove('d-none')
     }
