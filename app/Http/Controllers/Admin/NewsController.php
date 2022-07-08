@@ -103,12 +103,10 @@ class NewsController extends Controller
 
     public function store(NewsRequest $request)
     {
-        $published = Carbon::parse($request->input('published_at'), 'Asia/Almaty')->setTimezone('UTC');
-
         $request->merge([
             'site_display' => ($request->has('site_display')) ? 1 : 0,
             'display_on_main_page' => ($request->has('display_on_main_page')) ? 1 : 0,
-            'published_at' => $published
+            'published_at' => $request->input('published_at')
         ]);
 
         $news = $this->newsCase->store($request->all());
@@ -178,12 +176,10 @@ class NewsController extends Controller
 
     public function update(NewsRequest $request, $newsId)
     {
-        $published = Carbon::parse($request->input('published_at'), 'Asia/Almaty')->setTimezone('UTC');
-
         $request->merge([
             'site_display' => ($request->has('site_display')) ? 1 : 0,
             'display_on_main_page' => ($request->has('display_on_main_page')) ? 1 : 0,
-            'published_at' => $published
+            'published_at' => $request->input('published_at')
         ]);
 
         if ($request->hasFile('image')) {
