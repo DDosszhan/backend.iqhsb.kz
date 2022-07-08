@@ -1,5 +1,5 @@
 @foreach($items as $item)
-    @include($config('view.item'), ['config' => $config])
+    @include($config('view.item'))
 @endforeach
 
 @if(!$items->count())
