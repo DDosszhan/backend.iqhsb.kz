@@ -40,43 +40,14 @@ return [
                     ],
                 ],
                 [
-                    'is_tree' => true,
-                    'title' => 'Контент',
+                    'is_tree' => false,
+                    'title' => 'Страницы',
+                    'route_name' => 'admin.pages.index',
                     'item_active_on' => "$prefix/pages*",
                     'icon' => LineAwesomeIcon::BOOK,
                     'roles' => [
                         'admin',
                         'manager',
-                    ],
-                    'children' => [
-                        [
-                            'is_tree' => false,
-                            'title' => 'Домашняя',
-                            'route_name' => 'admin.pages.show',
-                            'route_params' => [
-                                'page' => 'home',
-                            ],
-                            'item_active_on' => "$prefix/pages/home*",
-                            'icon' => '',
-                            'roles' => [
-                                'admin',
-                                'manager',
-                            ],
-                        ],
-                        [
-                            'is_tree' => false,
-                            'title' => 'Программы',
-                            'route_name' => 'admin.pages.show',
-                            'route_params' => [
-                                'page' => 'program',
-                            ],
-                            'item_active_on' => "$prefix/pages/program*",
-                            'icon' => '',
-                            'roles' => [
-                                'admin',
-                                'manager',
-                            ],
-                        ],
                     ],
                 ],
                 [
