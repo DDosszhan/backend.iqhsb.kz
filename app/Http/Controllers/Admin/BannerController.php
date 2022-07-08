@@ -24,7 +24,7 @@ class BannerController extends Controller
     {
         return [
             'title' => [
-                'list' => 'Баннер',
+                'list' => 'Баннеры страниц',
                 'create' => 'Добавить баннер',
                 'edit' => 'Редактировать баннер',
             ],

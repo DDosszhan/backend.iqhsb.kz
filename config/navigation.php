@@ -81,7 +81,7 @@ return [
                 ],
                 [
                     'is_tree' => false,
-                    'title' => 'Баннеры',
+                    'title' => 'Баннеры страниц',
                     'route_name' => 'admin.banners.index',
                     'item_active_on' => "$prefix/banners*",
                     'icon' => LineAwesomeIcon::IMAGE,
