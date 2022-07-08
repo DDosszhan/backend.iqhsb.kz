@@ -52,8 +52,8 @@ class PartnerController extends Controller
             "name.$defaultLocale" => ['required', 'string', 'max:255'],
             'company' => ['required', "array:$locales"],
             "company.$defaultLocale" => ['required', 'string', 'max:255'],
-            'description' => ['required', "array:$locales"],
-            "description.$defaultLocale" => ['required', 'string', 'max:255'],
+            'description' => ['nullable', "array:$locales"],
+            "description.$defaultLocale" => ['nullable', 'string', 'max:255'],
             'image' => ['required', 'image'],
         ];
     }

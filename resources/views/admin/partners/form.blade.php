@@ -31,7 +31,7 @@
                         <p class="help-block"></p>
                     </div>
                     <div class="form-group">
-                        <label for="description.{{$locale}}">Текст ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="description.{{$locale}}">Текст ({{ $locale }})</label>
                         <input type="text" class="form-control" id="description.{{$locale}}" name="description[{{ $locale }}]"
                                @if(isset($item)) value="{{ $item->getTranslation('description', $locale) }}" @endif>
                         <p class="help-block"></p>
