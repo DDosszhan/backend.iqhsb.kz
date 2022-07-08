@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Http\Requests\NewsCreateRequest;
+use App\Http\Requests\NewsUpdateRequest;
 use Illuminate\Http\Request;
 
 use StarterKit\Categories\Services\CategoriesService\CategoryService;
 use StarterKit\Core\Models\Media;
 use StarterKit\Core\Services\MediaService\MediaService;
-use StarterKit\News\Http\Requests\NewsRequest;
 
 use StarterKit\News\Models\News;
 use StarterKit\News\UseCases\NewsCase;
@@ -101,7 +101,7 @@ class NewsController extends Controller
         ]);
     }
 
-    public function store(NewsRequest $request)
+    public function store(NewsCreateRequest $request)
     {
         $request->merge([
             'site_display' => ($request->has('site_display')) ? 1 : 0,
@@ -174,7 +174,7 @@ class NewsController extends Controller
         ]);
     }
 
-    public function update(NewsRequest $request, $newsId)
+    public function update(NewsUpdateRequest $request, $newsId)
     {
         $request->merge([
             'site_display' => ($request->has('site_display')) ? 1 : 0,

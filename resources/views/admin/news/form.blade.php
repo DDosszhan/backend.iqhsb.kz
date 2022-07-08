@@ -4,7 +4,7 @@
                 <fieldset>
                     <legend>Медиа новости</legend>
                     <div class="form-group">
-                        <label for="image">Картинка новости</label>
+                        <label for="image">Картинка новости *</label>
                         <input type="file" class="form-control  " id="image" name="image" placeholder="">
                         <p class="help-block"></p>
 
