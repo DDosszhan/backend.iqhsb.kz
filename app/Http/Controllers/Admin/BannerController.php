@@ -43,7 +43,7 @@ class BannerController extends Controller
                 'item' => 'admin.banners.item',
             ],
             'cropper' => [
-                'aspectRatio' => 1920 / 1080,
+                'aspectRatio' => 16 / 9,
             ],
         ];
     }
@@ -62,15 +62,15 @@ class BannerController extends Controller
             "button_text.$defaultLocale" => ['required', 'string', 'max:255'],
             'button_url' => ['required', "array:$locales"],
             "button_url.$defaultLocale" => ['required', 'string', 'max:255'],
-            'image' => ['required', 'image'],
+            'cropper' => ['required', 'image'],
         ];
     }
 
     public function store(Request $request): JsonResponse
     {
         $validatedData = $this->validateStoreRequest($request->all());
-        $this->item = $this->repository->create($validatedData);
-        $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        $this->item = $this->repository->getModel()->create($validatedData);
+        $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
 
         return $this->storeResponse();
     }
@@ -81,8 +81,8 @@ class BannerController extends Controller
 
         $validatedData = $this->validateUpdateRequest($request->all());
         $this->item->update($validatedData);
-        if ($request->hasFile('image')) {
-            $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        if ($request->hasFile('cropper')) {
+            $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
         }
 
         return $this->updateResponse();
@@ -91,7 +91,7 @@ class BannerController extends Controller
     public function getValidationRulesForUpdate(): array
     {
         return array_merge($this->validationRules(), [
-            'image' => ['nullable', 'image'],
+            'cropper' => ['nullable', 'image'],
         ]);
     }
 }
