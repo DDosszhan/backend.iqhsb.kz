@@ -6,31 +6,40 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Admin\PartnerRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use StarterKit\Core\Traits\AdminBase;
 
 class PartnerController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
-    public function __construct(PartnerRepository $partnerRepository)
+    public function __construct(PartnerRepository $repository)
     {
-        $this->repository = $partnerRepository;
+        $this->repository = $repository;
+    }
 
-        $this->title = 'Попечители и партнеры';
-        $this->titleCreate = 'Добавить партнера';
-        $this->titleEdit = 'Редактировать партнера';
-        $this->tableColumnCount = 7;
-
-        $this->routeList = 'admin.partners.list';
-        $this->routeCreate = 'admin.partners.create';
-        $this->routeStore = 'admin.partners.store';
-        $this->routeEdit = 'admin.partners.edit';
-        $this->routeUpdate = 'admin.partners.update';
-        $this->routeDelete = 'admin.partners.delete';
-
-        $this->viewIndex = 'admin.partners.index';
-        $this->viewList = 'admin.partners.list';
-        $this->viewForm = 'admin.partners.form';
-        $this->viewItem = 'admin.partners.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Попечители и партнеры',
+                'create' => 'Добавить партнера',
+                'edit' => 'Редактировать партнера',
+            ],
+            'route' => [
+                'list' => 'admin.partners.list',
+                'create' => 'admin.partners.create',
+                'store' => 'admin.partners.store',
+                'edit' => 'admin.partners.edit',
+                'update' => 'admin.partners.update',
+                'delete' => 'admin.partners.delete',
+            ],
+            'view' => [
+                'index' => 'admin.partners.index',
+                'list' => 'admin.partners.list',
+                'form' => 'admin.partners.form',
+                'item' => 'admin.partners.item',
+            ],
+        ];
     }
 
     public function validationRules(): array
@@ -52,7 +61,7 @@ class PartnerController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validatedData = $this->validateStoreRequest($request->all());
-        $this->item = $this->repository->create($validatedData);
+        $this->item = $this->repository->getModel()->create($validatedData);
         $this->item->addMedia($request->file('image'))->toMediaCollection('default');
 
         return $this->storeResponse();

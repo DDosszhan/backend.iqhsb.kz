@@ -4,31 +4,40 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\ConsultationRequestRepository;
+use StarterKit\Core\Traits\AdminBase;
 
 class ConsultationRequestController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
-    public function __construct(ConsultationRequestRepository $consultationRequestRepository)
+    public function __construct(ConsultationRequestRepository $repository)
     {
-        $this->repository = $consultationRequestRepository;
+        $this->repository = $repository;
+    }
 
-        $this->title = 'Запросы консультации';
-        $this->titleCreate = 'Создать запрос консультации'; // lol
-        $this->titleEdit = 'Редактировать запрос консультации';
-        $this->tableColumnCount = 6;
-
-        $this->routeList = 'admin.consultation-requests.list';
-        $this->routeCreate = 'admin.consultation-requests.create';
-        $this->routeStore = 'admin.consultation-requests.store';
-        $this->routeEdit = 'admin.consultation-requests.edit';
-        $this->routeUpdate = 'admin.consultation-requests.update';
-        $this->routeDelete = 'admin.consultation-requests.delete';
-
-        $this->viewIndex = 'admin.consultation-requests.index';
-        $this->viewList = 'admin.consultation-requests.list';
-        $this->viewForm = 'admin.consultation-requests.form';
-        $this->viewItem = 'admin.consultation-requests.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Запросы консультации',
+                'create' => 'Создать запрос консультации',
+                'edit' => 'Редактировать запрос консультации',
+            ],
+            'route' => [
+                'list' => 'admin.consultation-requests.list',
+                'create' => 'admin.consultation-requests.create',
+                'store' => 'admin.consultation-requests.store',
+                'edit' => 'admin.consultation-requests.edit',
+                'update' => 'admin.consultation-requests.update',
+                'delete' => 'admin.consultation-requests.delete',
+            ],
+            'view' => [
+                'index' => 'admin.consultation-requests.index',
+                'list' => 'admin.consultation-requests.list',
+                'form' => 'admin.consultation-requests.form',
+                'item' => 'admin.consultation-requests.item',
+            ],
+        ];
     }
 
     public function validationRules(): array

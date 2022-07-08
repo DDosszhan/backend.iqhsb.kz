@@ -1,5 +1,5 @@
 @foreach($items as $item)
-    @include($viewItem, ['routeEdit' => $routeEdit, 'routeDelete' => $routeDelete])
+    @include($config('view.item'), ['routeEdit' => $config('route.edit'), 'routeDelete' => $config('route.delete')])
 @endforeach
 
 @if(!$items->count())

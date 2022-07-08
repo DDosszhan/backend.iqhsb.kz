@@ -6,31 +6,40 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Admin\CalendarEventRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use StarterKit\Core\Traits\AdminBase;
 
 class CalendarEventController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
-    public function __construct(CalendarEventRepository $calendarEventRepository)
+    public function __construct(CalendarEventRepository $repository)
     {
-        $this->repository = $calendarEventRepository;
+        $this->repository = $repository;
+    }
 
-        $this->title = 'Академический календарь';
-        $this->titleCreate = 'Создать событие в календаре';
-        $this->titleEdit = 'Редактировать событие в календаре';
-        $this->tableColumnCount = 6;
-
-        $this->routeList = 'admin.calendar-events.list';
-        $this->routeCreate = 'admin.calendar-events.create';
-        $this->routeStore = 'admin.calendar-events.store';
-        $this->routeEdit = 'admin.calendar-events.edit';
-        $this->routeUpdate = 'admin.calendar-events.update';
-        $this->routeDelete = 'admin.calendar-events.delete';
-
-        $this->viewIndex = 'admin.calendar-events.index';
-        $this->viewList = 'admin.calendar-events.list';
-        $this->viewForm = 'admin.calendar-events.form';
-        $this->viewItem = 'admin.calendar-events.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Академический календарь',
+                'create' => 'Создать событие в календаре',
+                'edit' => 'Редактировать событие в календаре',
+            ],
+            'route' => [
+                'list' => 'admin.calendar-events.list',
+                'create' => 'admin.calendar-events.create',
+                'store' => 'admin.calendar-events.store',
+                'edit' => 'admin.calendar-events.edit',
+                'update' => 'admin.calendar-events.update',
+                'delete' => 'admin.calendar-events.delete',
+            ],
+            'view' => [
+                'index' => 'admin.calendar-events.index',
+                'list' => 'admin.calendar-events.list',
+                'form' => 'admin.calendar-events.form',
+                'item' => 'admin.calendar-events.item',
+            ],
+        ];
     }
 
     public function validationRules(): array
@@ -50,7 +59,7 @@ class CalendarEventController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validatedData = $this->validateStoreRequest($request->all());
-        $this->item = $this->repository->create($validatedData);
+        $this->item = $this->repository->getModel()->create($validatedData);
         $this->item->addMedia($request->file('image'))->toMediaCollection('default');
 
         return $this->storeResponse();

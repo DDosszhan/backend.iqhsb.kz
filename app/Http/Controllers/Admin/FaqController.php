@@ -5,31 +5,40 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\FaqRepository;
 use Illuminate\Http\JsonResponse;
+use StarterKit\Core\Traits\AdminBase;
 
 class FaqController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
-    public function __construct(FaqRepository $faqRepository)
+    public function __construct(FaqRepository $repository)
     {
-        $this->repository = $faqRepository;
+        $this->repository = $repository;
+    }
 
-        $this->title = 'Частые вопросы';
-        $this->titleCreate = 'Создать вопрос';
-        $this->titleEdit = 'Редактировать вопрос';
-        $this->tableColumnCount = 5;
-
-        $this->routeList = 'admin.faqs.list';
-        $this->routeCreate = 'admin.faqs.create';
-        $this->routeStore = 'admin.faqs.store';
-        $this->routeEdit = 'admin.faqs.edit';
-        $this->routeUpdate = 'admin.faqs.update';
-        $this->routeDelete = 'admin.faqs.delete';
-
-        $this->viewIndex = 'admin.faqs.index';
-        $this->viewList = 'admin.faqs.list';
-        $this->viewForm = 'admin.faqs.form';
-        $this->viewItem = 'admin.faqs.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Частые вопросы',
+                'create' => 'Создать вопрос',
+                'edit' => 'Редактировать вопрос',
+            ],
+            'route' => [
+                'list' => 'admin.faqs.list',
+                'create' => 'admin.faqs.create',
+                'store' => 'admin.faqs.store',
+                'edit' => 'admin.faqs.edit',
+                'update' => 'admin.faqs.update',
+                'delete' => 'admin.faqs.delete',
+            ],
+            'view' => [
+                'index' => 'admin.faqs.index',
+                'list' => 'admin.faqs.list',
+                'form' => 'admin.faqs.form',
+                'item' => 'admin.faqs.item',
+            ],
+        ];
     }
 
     public function validationRules(): array
@@ -48,14 +57,14 @@ class FaqController extends Controller
 
     public function list(): JsonResponse
     {
-        $this->items = $this->repository->orderBy('position')->paginate();
+        $this->items = $this->repository->getModel()->orderBy('position')->paginate();
 
         return $this->listResponse();
     }
 
     public function positionUp(int $id)
     {
-        $items = $this->repository->orderBy('position')->get();
+        $items = $this->repository->getModel()->orderBy('position')->get();
 
         $position = 1;
         $skipId = null;
@@ -93,7 +102,7 @@ class FaqController extends Controller
 
     public function positionDown(int $id)
     {
-        $items = $this->repository->orderBy('position')->get();
+        $items = $this->repository->getModel()->orderBy('position')->get();
 
         $position = 1;
         $skipId = null;

@@ -6,31 +6,40 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Admin\UniversityRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use StarterKit\Core\Traits\AdminBase;
 
 class UniversityController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
     public function __construct(UniversityRepository $universityRepository)
     {
         $this->repository = $universityRepository;
+    }
 
-        $this->title = 'Университеты';
-        $this->titleCreate = 'Создать универститет';
-        $this->titleEdit = 'Редактировать универститет';
-        $this->tableColumnCount = 4;
-
-        $this->routeList = 'admin.universities.list';
-        $this->routeCreate = 'admin.universities.create';
-        $this->routeStore = 'admin.universities.store';
-        $this->routeEdit = 'admin.universities.edit';
-        $this->routeUpdate = 'admin.universities.update';
-        $this->routeDelete = 'admin.universities.delete';
-
-        $this->viewIndex = 'admin.universities.index';
-        $this->viewList = 'admin.universities.list';
-        $this->viewForm = 'admin.universities.form';
-        $this->viewItem = 'admin.universities.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Университеты',
+                'create' => 'Создать универститет',
+                'edit' => 'Редактировать универститет',
+            ],
+            'route' => [
+                'list' => 'admin.universities.list',
+                'create' => 'admin.universities.create',
+                'store' => 'admin.universities.store',
+                'edit' => 'admin.universities.edit',
+                'update' => 'admin.universities.update',
+                'delete' => 'admin.universities.delete',
+            ],
+            'view' => [
+                'index' => 'admin.universities.index',
+                'list' => 'admin.universities.list',
+                'form' => 'admin.universities.form',
+                'item' => 'admin.universities.item',
+            ],
+        ];
     }
 
     public function validationRules(): array
@@ -48,7 +57,7 @@ class UniversityController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validatedData = $this->validateStoreRequest($request->all());
-        $this->item = $this->repository->create($validatedData);
+        $this->item = $this->repository->getModel()->create($validatedData);
         $this->item->addMedia($request->file('image'))->toMediaCollection('default');
 
         return $this->storeResponse();

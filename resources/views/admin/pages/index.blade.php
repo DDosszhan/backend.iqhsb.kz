@@ -6,7 +6,7 @@
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        {{ $title }}
+                        {{ $config('title.list') }}
                     </h3>
                 </div>
             </div>
@@ -16,7 +16,7 @@
 
                     <!-- tool buttons -->
                     <li class="m-portlet__nav-item">
-                        <a href="#" data-url="{{ route($routeCreate) }}"
+                        <a href="#" data-url="{{ route($config('route.create')) }}"
                            data-type="modal" data-modal="largeModal"
                            class="m-portlet__nav-link m-portlet__nav-link--icon handle-click"
                            data-container="body"
@@ -35,7 +35,7 @@
         <!--begin::Section-->
         <div class="m-section">
             <div class="m-section__content">
-                <table class="table table-bordered ajax-content" data-url="{{route($routeList)}}">
+                <table class="table table-bordered ajax-content" data-url="{{route($config('route.list'))}}">
                     <thead>
                     <tr>
                         <th width="50" class="text-center">#</th>

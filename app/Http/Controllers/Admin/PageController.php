@@ -20,23 +20,31 @@ class PageController extends Controller
     public function __construct(PageRepository $repository)
     {
         $this->repository = $repository;
+    }
 
-        $this->title = 'Страницы';
-        $this->titleCreate = 'Добавить страницу';
-        $this->titleEdit = 'Редактировать страницу';
-        $this->tableColumnCount = 20;
-
-        $this->routeList = 'admin.pages.list';
-        $this->routeCreate = 'admin.pages.create';
-        $this->routeStore = 'admin.pages.store';
-        $this->routeEdit = 'admin.pages.edit';
-        $this->routeUpdate = 'admin.pages.update';
-        $this->routeDelete = 'admin.pages.delete';
-
-        $this->viewIndex = 'admin.pages.index';
-        $this->viewList = 'admin.pages.list';
-        $this->viewForm = 'admin.pages.form';
-        $this->viewItem = 'admin.pages.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Страницы',
+                'create' => 'Добавить страницу',
+                'edit' => 'Редактировать страницу',
+            ],
+            'route' => [
+                'list' => 'admin.pages.list',
+                'create' => 'admin.pages.create',
+                'store' => 'admin.pages.store',
+                'edit' => 'admin.pages.edit',
+                'update' => 'admin.pages.update',
+                'delete' => 'admin.pages.delete',
+            ],
+            'view' => [
+                'index' => 'admin.pages.index',
+                'list' => 'admin.pages.list',
+                'form' => 'admin.pages.form',
+                'item' => 'admin.pages.item',
+            ],
+        ];
     }
 
     public function validationRules(): array
@@ -66,11 +74,8 @@ class PageController extends Controller
 
         return view("admin.pages.show", [
             'title' => $item->title,
-            'routeList' => $this->routeList,
-            'routeCreate' => $this->routeCreate,
-            'viewForm' => $this->viewForm,
-            'formAction' => route($this->routeUpdate, $item->id),
-            'buttonSubmit' => $this->buttonSubmitEdit,
+            'formAction' => route($this->config('route.update'), $item->id),
+            'config' => $this->config(),
             'item' => $item,
             'blocks' => $blocks,
         ]);

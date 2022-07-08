@@ -7,31 +7,40 @@ use App\Models\University;
 use App\Repositories\Admin\GraduateAchievementRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use StarterKit\Core\Traits\AdminBase;
 
 class GraduateAchievementController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
-    public function __construct(GraduateAchievementRepository $graduateAchievementRepository)
+    public function __construct(GraduateAchievementRepository $repository)
     {
-        $this->repository = $graduateAchievementRepository;
+        $this->repository = $repository;
+    }
 
-        $this->title = 'Достижения выпускников';
-        $this->titleCreate = 'Добавить достижение';
-        $this->titleEdit = 'Редактировать достижение';
-        $this->tableColumnCount = 7;
-
-        $this->routeList = 'admin.graduate-achievements.list';
-        $this->routeCreate = 'admin.graduate-achievements.create';
-        $this->routeStore = 'admin.graduate-achievements.store';
-        $this->routeEdit = 'admin.graduate-achievements.edit';
-        $this->routeUpdate = 'admin.graduate-achievements.update';
-        $this->routeDelete = 'admin.graduate-achievements.delete';
-
-        $this->viewIndex = 'admin.graduate-achievements.index';
-        $this->viewList = 'admin.graduate-achievements.list';
-        $this->viewForm = 'admin.graduate-achievements.form';
-        $this->viewItem = 'admin.graduate-achievements.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Достижения выпускников',
+                'create' => 'Добавить достижение',
+                'edit' => 'Редактировать достижение',
+            ],
+            'route' => [
+                'list' => 'admin.graduate-achievements.list',
+                'create' => 'admin.graduate-achievements.create',
+                'store' => 'admin.graduate-achievements.store',
+                'edit' => 'admin.graduate-achievements.edit',
+                'update' => 'admin.graduate-achievements.update',
+                'delete' => 'admin.graduate-achievements.delete',
+            ],
+            'view' => [
+                'index' => 'admin.graduate-achievements.index',
+                'list' => 'admin.graduate-achievements.list',
+                'form' => 'admin.graduate-achievements.form',
+                'item' => 'admin.graduate-achievements.item',
+            ],
+        ];
     }
 
     public function validationRules(): array
@@ -55,7 +64,7 @@ class GraduateAchievementController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validatedData = $this->validateStoreRequest($request->all());
-        $this->item = $this->repository->create($validatedData);
+        $this->item = $this->repository->getModel()->create($validatedData);
         $this->item->addMedia($request->file('image'))->toMediaCollection('default');
 
         return $this->storeResponse();
@@ -88,11 +97,10 @@ class GraduateAchievementController extends Controller
                 'updateModal' => [
                     'params' => [
                         'modal' => 'largeModal',
-                        'title' => $this->titleCreate,
-                        'content' => view($this->viewForm, [
-                            'formAction' => route($this->routeStore),
-                            'buttonSubmit' => $this->buttonSubmitCreate,
-                            'buttonCancel' => $this->buttonCancel,
+                        'title' => $this->config('title.create'),
+                        'content' => view($this->config('view.form'), [
+                            'formAction' => route($this->config('route.store')),
+                            'config' => $this->config(),
                             'universities' => University::select(['id', 'name'])->get(),
                         ])->render(),
                     ]
@@ -108,11 +116,10 @@ class GraduateAchievementController extends Controller
                 'updateModal' => [
                     'params' => [
                         'modal' => 'largeModal',
-                        'title' => $this->titleEdit,
-                        'content' => view($this->viewForm, [
-                            'formAction' => route($this->routeUpdate, $this->item->id),
-                            'buttonSubmit' => $this->buttonSubmitEdit,
-                            'buttonCancel' => $this->buttonCancel,
+                        'title' => $this->config('title.edit'),
+                        'content' => view($this->config('view.form'), [
+                            'formAction' => route($this->config('route.update'), $this->item->id),
+                            'config' => $this->config(),
                             'item' => $this->item,
                             'universities' => University::select(['id', 'name'])->get(),
                         ])->render(),

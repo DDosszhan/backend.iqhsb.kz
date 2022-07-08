@@ -23,7 +23,7 @@
 {{--           data-title="Удаление"--}}
 {{--           data-message="Вы уверены, что хотите удалить?"--}}
 {{--           data-cancel-text="Нет"--}}
-{{--           data-confirm-text="Да, удалить" data-url="{{ route($routeDelete, ['id' => $item->id ]) }}">--}}
+{{--           data-confirm-text="Да, удалить" data-url="{{ route($config('route.delete'), ['id' => $item->id ]) }}">--}}
 {{--            <i class="la la-trash"></i>--}}
 {{--        </a>--}}
     </td>

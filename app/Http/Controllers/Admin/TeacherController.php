@@ -6,31 +6,40 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Admin\TeacherRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use StarterKit\Core\Traits\AdminBase;
 
 class TeacherController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
     public function __construct(TeacherRepository $teacherRepository)
     {
         $this->repository = $teacherRepository;
+    }
 
-        $this->title = 'Преподавательский состав';
-        $this->titleCreate = 'Добавить предодавателя';
-        $this->titleEdit = 'Редактировать преподавателя';
-        $this->tableColumnCount = 5;
-
-        $this->routeList = 'admin.teachers.list';
-        $this->routeCreate = 'admin.teachers.create';
-        $this->routeStore = 'admin.teachers.store';
-        $this->routeEdit = 'admin.teachers.edit';
-        $this->routeUpdate = 'admin.teachers.update';
-        $this->routeDelete = 'admin.teachers.delete';
-
-        $this->viewIndex = 'admin.teachers.index';
-        $this->viewList = 'admin.teachers.list';
-        $this->viewForm = 'admin.teachers.form';
-        $this->viewItem = 'admin.teachers.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Преподавательский состав',
+                'create' => 'Добавить предодавателя',
+                'edit' => 'Редактировать преподавателя',
+            ],
+            'route' => [
+                'list' => 'admin.teachers.list',
+                'create' => 'admin.teachers.create',
+                'store' => 'admin.teachers.store',
+                'edit' => 'admin.teachers.edit',
+                'update' => 'admin.teachers.update',
+                'delete' => 'admin.teachers.delete',
+            ],
+            'view' => [
+                'index' => 'admin.teachers.index',
+                'list' => 'admin.teachers.list',
+                'form' => 'admin.teachers.form',
+                'item' => 'admin.teachers.item',
+            ],
+        ];
     }
 
     public function validationRules(): array
@@ -50,7 +59,7 @@ class TeacherController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validatedData = $this->validateStoreRequest($request->all());
-        $this->item = $this->repository->create($validatedData);
+        $this->item = $this->repository->getModel()->create($validatedData);
         $this->item->addMedia($request->file('image'))->toMediaCollection('default');
 
         return $this->storeResponse();

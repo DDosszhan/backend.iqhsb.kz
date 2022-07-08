@@ -9,31 +9,40 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Admin\QuestionnaireRepository;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Enum;
+use StarterKit\Core\Traits\AdminBase;
 
 class QuestionnaireController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
-    public function __construct(QuestionnaireRepository $questionnaireRepository)
+    public function __construct(QuestionnaireRepository $repository)
     {
-        $this->repository = $questionnaireRepository;
+        $this->repository = $repository;
+    }
 
-        $this->title = 'Анкеты на поступление';
-        $this->titleCreate = 'Создать анкету'; // lol
-        $this->titleEdit = 'Редактировать анкету';
-        $this->tableColumnCount = 12;
-
-        $this->routeList = 'admin.questionnaires.list';
-        $this->routeCreate = 'admin.questionnaires.create';
-        $this->routeStore = 'admin.questionnaires.store';
-        $this->routeEdit = 'admin.questionnaires.edit';
-        $this->routeUpdate = 'admin.questionnaires.update';
-        $this->routeDelete = 'admin.questionnaires.delete';
-
-        $this->viewIndex = 'admin.questionnaires.index';
-        $this->viewList = 'admin.questionnaires.list';
-        $this->viewForm = 'admin.questionnaires.form';
-        $this->viewItem = 'admin.questionnaires.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Анкеты на поступление',
+                'create' => 'Создать анкету',
+                'edit' => 'Редактировать анкету',
+            ],
+            'route' => [
+                'list' => 'admin.questionnaires.list',
+                'create' => 'admin.questionnaires.create',
+                'store' => 'admin.questionnaires.store',
+                'edit' => 'admin.questionnaires.edit',
+                'update' => 'admin.questionnaires.update',
+                'delete' => 'admin.questionnaires.delete',
+            ],
+            'view' => [
+                'index' => 'admin.questionnaires.index',
+                'list' => 'admin.questionnaires.list',
+                'form' => 'admin.questionnaires.form',
+                'item' => 'admin.questionnaires.item',
+            ],
+        ];
     }
 
     public function validationRules(): array

@@ -42,11 +42,6 @@ class BannerController extends Controller
                 'form' => 'admin.banners.form',
                 'item' => 'admin.banners.item',
             ],
-            'button' => [
-                'create' => 'Добавить',
-                'edit' => 'Редактировать',
-                'cancel' => 'Отменить',
-            ],
             'cropper' => [
                 'aspectRatio' => 1920 / 1080,
             ],

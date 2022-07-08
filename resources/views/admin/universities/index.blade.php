@@ -2,7 +2,7 @@
 
 @section('tools_buttons')
     <li class="m-portlet__nav-item">
-        <a href="#" data-url="{{ route($routeCreate) }}"
+        <a href="#" data-url="{{ route($config('route.create')) }}"
            data-type="modal" data-modal="largeModal"
            class="m-portlet__nav-link m-portlet__nav-link--icon handle-click"
            data-container="body"

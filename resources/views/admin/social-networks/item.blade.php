@@ -9,7 +9,7 @@
     </td>
 
     <td class="text-center align-middle">
-        <a href="#" data-url="{{ route($routeEdit, ['id' => $item->id ]) }}" class="handle-click" data-type="modal" data-modal="largeModal">
+        <a href="#" data-url="{{ route($config('route.edit'), ['id' => $item->id ]) }}" class="handle-click" data-type="modal" data-modal="largeModal">
             <i class="la la-edit"></i>
         </a>
 
@@ -18,7 +18,7 @@
 {{--           data-title="Удаление"--}}
 {{--           data-message="Вы уверены, что хотите удалить?"--}}
 {{--           data-cancel-text="Нет"--}}
-{{--           data-confirm-text="Да, удалить" data-url="{{ route($routeDelete, ['id' => $item->id ]) }}">--}}
+{{--           data-confirm-text="Да, удалить" data-url="{{ route($config('route.delete'), ['id' => $item->id ]) }}">--}}
 {{--            <i class="la la-trash"></i>--}}
 {{--        </a>--}}
     </td>

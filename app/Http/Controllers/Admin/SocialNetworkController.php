@@ -4,31 +4,40 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\SocialNetworkRepository;
+use StarterKit\Core\Traits\AdminBase;
 
 class SocialNetworkController extends Controller
 {
-    use AdminBaseTrait;
+    use AdminBase;
 
     public function __construct(SocialNetworkRepository $socialNetworkRepository)
     {
         $this->repository = $socialNetworkRepository;
+    }
 
-        $this->title = 'Ссылки на соц. сети';
-        $this->titleCreate = 'Добавить ссылку';
-        $this->titleEdit = 'Редактировать ссылку';
-        $this->tableColumnCount = 4;
-
-        $this->routeList = 'admin.social-networks.list';
-        $this->routeCreate = 'admin.social-networks.create';
-        $this->routeStore = 'admin.social-networks.store';
-        $this->routeEdit = 'admin.social-networks.edit';
-        $this->routeUpdate = 'admin.social-networks.update';
-        $this->routeDelete = 'admin.social-networks.delete';
-
-        $this->viewIndex = 'admin.social-networks.index';
-        $this->viewList = 'admin.social-networks.list';
-        $this->viewForm = 'admin.social-networks.form';
-        $this->viewItem = 'admin.social-networks.item';
+    public function setConfig(): array
+    {
+        return [
+            'title' => [
+                'list' => 'Ссылки на соц. сети',
+                'create' => 'Добавить ссылку',
+                'edit' => 'Редактировать ссылку',
+            ],
+            'route' => [
+                'list' => 'admin.social-networks.list',
+                'create' => 'admin.social-networks.create',
+                'store' => 'admin.social-networks.store',
+                'edit' => 'admin.social-networks.edit',
+                'update' => 'admin.social-networks.update',
+                'delete' => 'admin.social-networks.delete',
+            ],
+            'view' => [
+                'index' => 'admin.social-networks.index',
+                'list' => 'admin.social-networks.list',
+                'form' => 'admin.social-networks.form',
+                'item' => 'admin.social-networks.item',
+            ],
+        ];
     }
 
     public function validationRules(): array
