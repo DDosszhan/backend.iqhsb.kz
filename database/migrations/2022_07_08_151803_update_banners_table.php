@@ -63,7 +63,11 @@ return new class extends Migration {
         foreach ($data as $element) {
             $insertData[] = [
                 'slug' => $element['slug'],
-                'title' => json_encode(['kk' => $element['title']]),
+                'title' => json_encode([
+                    'kk' => $element['title'],
+                    'ru' => $element['title'],
+                    'en' => $element['title'],
+                ]),
                 'settings' => json_encode($element['settings']),
                 'created_at' => $now,
                 'updated_at' => $now,
