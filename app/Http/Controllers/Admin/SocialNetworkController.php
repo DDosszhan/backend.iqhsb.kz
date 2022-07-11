@@ -15,7 +15,7 @@ class SocialNetworkController extends Controller
         $this->repository = $socialNetworkRepository;
     }
 
-    public function setConfig(): array
+    public function initConfig(): array
     {
         return [
             'title' => [

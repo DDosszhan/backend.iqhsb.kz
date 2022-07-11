@@ -17,7 +17,7 @@ class PartnerController extends Controller
         $this->repository = $repository;
     }
 
-    public function setConfig(): array
+    public function initConfig(): array
     {
         return [
             'title' => [

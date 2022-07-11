@@ -17,7 +17,7 @@ class TeacherController extends Controller
         $this->repository = $teacherRepository;
     }
 
-    public function setConfig(): array
+    public function initConfig(): array
     {
         return [
             'title' => [
