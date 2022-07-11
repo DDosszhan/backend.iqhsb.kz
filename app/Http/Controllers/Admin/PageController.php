@@ -62,30 +62,23 @@ class PageController extends Controller
             "blocks.*.title.$defaultLocale" => ['nullable', 'string', 'max:255'],
             'blocks.*.content' => ['nullable', "array:$locales"],
             "blocks.*.content.$defaultLocale" => ['nullable', 'string', 'max:65535'],
-            'image' => ['required', 'image'],
+            'image' => ['nullable', 'image'],
         ];
-    }
-
-    public function show(string $page, Request $request): Factory|View|Application
-    {
-        $item = $this->repository->getModel()->where('slug', $page)->first();
-        if (!$item) throw new NotFoundHttpException();
-        $blocks = $request->has('blocks') ? (int)$request->input('blocks') : count($item->blocks ?? []);
-
-        return view("admin.pages.show", [
-            'title' => $item->title,
-            'formAction' => route($this->config('route.update'), $item->id),
-            'config' => $this->config(),
-            'item' => $item,
-            'blocks' => $blocks,
-        ]);
     }
 
     public function store(Request $request): JsonResponse
     {
         $validatedData = $this->validateStoreRequest($request->all());
-        $this->item = $this->repository->getModel()->create($validatedData);
-        $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        $this->item = $this->repository->getModel()->create(array_merge($validatedData, [
+            'settings' => [
+                'block_count' => 0,
+                'removable' => true,
+            ],
+        ]));
+
+        if ($request->hasFile('image')) {
+            $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        }
 
         return $this->storeResponse();
     }

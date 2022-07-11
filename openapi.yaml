@@ -150,7 +150,7 @@ paths:
           description: Запрос успешно выполнен
           required: true
           schema:
-            $ref: '#/components/schemas/PageList'
+            $ref: '#/components/schemas/BannerList'
       responses:
         '200':
           description: Запрос успешно выполнен
@@ -533,13 +533,18 @@ components:
           type: string
           example: <p>Text up to 65535 characters</p>
           nullable: true
-    PageList:
+    BannerList:
       type: string
       enum:
         - home
         - school_life
         - program
         - admissions
+    PageList:
+      type: string
+      enum:
+        - about
+        - program
       default: home
     sendQuestionnaire:
       type: object

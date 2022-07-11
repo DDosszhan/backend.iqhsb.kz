@@ -39,8 +39,8 @@
                     </div>
 
                     {{-- range() - создает массив --}}
-                    @if (isset($blocks) && $blocks > 0)
-                        @foreach(range(0,$blocks-1) as $num)
+                    @if (isset($item) && $item->settings['block_count'] > 0)
+                        @foreach(range(0,$item->settings['block_count']-1) as $num)
                             <fieldset>
                                 <legend><b>Блок {{ $num+1 }} ({{ $locale }})</b></legend>
 
@@ -66,7 +66,7 @@
         @endforeach
 
         <fieldset>
-            <legend>Изображение <span class="text-danger">*</span></legend>
+            <legend>Изображение</legend>
             <div class="form-group">
                 <input type="file" class="form-input-image-media" id="image" name="image"
                        accept="image/x-png,image/gif,image/jpeg,image/svg+xml">

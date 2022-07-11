@@ -15,13 +15,15 @@
             <i class="la la-edit"></i>
         </a>
 
-        <a href="#" class="handle-click" data-type="confirm"
-           title="Удалить"
-           data-title="Удаление"
-           data-message="Вы уверены, что хотите удалить?"
-           data-cancel-text="Нет"
-           data-confirm-text="Да, удалить" data-url="{{ route($config('route.delete'), ['id' => $item->id ]) }}">
-            <i class="la la-trash"></i>
-        </a>
+        @if ($item->settings['removable'])
+            <a href="#" class="handle-click" data-type="confirm"
+               title="Удалить"
+               data-title="Удаление"
+               data-message="Вы уверены, что хотите удалить?"
+               data-cancel-text="Нет"
+               data-confirm-text="Да, удалить" data-url="{{ route($config('route.delete'), ['id' => $item->id ]) }}">
+                <i class="la la-trash"></i>
+            </a>
+        @endif
     </td>
 </tr>

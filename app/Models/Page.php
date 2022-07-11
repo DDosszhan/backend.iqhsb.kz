@@ -16,10 +16,11 @@ class Page extends Model implements HasMedia
     use InteractsWithMedia;
     use Sluggable;
 
-    protected $fillable = ['title', 'content', 'blocks'];
+    protected $fillable = ['title', 'content', 'blocks', 'settings'];
     protected $translatable = ['title', 'content'];
     protected $casts = [
         'blocks' => 'array',
+        'settings' => 'array',
     ];
 
     public function registerMediaCollections(): void
