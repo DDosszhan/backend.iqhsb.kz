@@ -107,6 +107,17 @@ return [
                 ],
                 [
                     'is_tree' => false,
+                    'title' => 'Прикрепление файлов',
+                    'route_name' => 'admin.example_files.index',
+                    'item_active_on' => "$prefix/example_files*",
+                    'icon' => LineAwesomeIcon::USERS,
+                    'roles' => [
+                        'admin',
+                        'manager',
+                    ],
+                ],
+                [
+                    'is_tree' => false,
                     'title' => 'Анкеты',
                     'route_name' => 'admin.questionnaires.index',
                     'item_active_on' => "$prefix/questionnaires*",

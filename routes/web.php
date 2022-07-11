@@ -128,4 +128,13 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::post('/{id}/update', 'update')->name('admin.pages.update');
         Route::get('/{id}/delete', 'delete')->name('admin.pages.delete');
     });
+    Route::group(['prefix' => 'example-files', 'controller' => \App\Http\Controllers\Admin\ExampleFileController::class], function () {
+        Route::get('/', 'index')->name('admin.example_files.index');
+        Route::get('/list', 'list')->name('admin.example_files.list');
+        Route::get('/create', 'create')->name('admin.example_files.create');
+        Route::post('/store', 'store')->name('admin.example_files.store');
+        Route::get('/{id}/edit', 'edit')->name('admin.example_files.edit');
+        Route::post('/{id}/update', 'update')->name('admin.example_files.update');
+        Route::get('/{id}/delete', 'delete')->name('admin.example_files.delete');
+    });
 });
