@@ -39,6 +39,11 @@ class PartnerController extends Controller
                 'form' => 'admin.partners.form',
                 'item' => 'admin.partners.item',
             ],
+            'cropper' => [
+                'width' => 180,
+                'height' => 180,
+                'quality' => 1,
+            ],
         ];
     }
 
@@ -54,7 +59,7 @@ class PartnerController extends Controller
             "company.$defaultLocale" => ['required', 'string', 'max:255'],
             'description' => ['nullable', "array:$locales"],
             "description.$defaultLocale" => ['nullable', 'string', 'max:255'],
-            'image' => ['required', 'image'],
+            'cropper' => ['required', 'image'],
         ];
     }
 
@@ -62,7 +67,7 @@ class PartnerController extends Controller
     {
         $validatedData = $this->validateStoreRequest($request->all());
         $this->item = $this->repository->getModel()->create($validatedData);
-        $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
 
         return $this->storeResponse();
     }
@@ -73,8 +78,8 @@ class PartnerController extends Controller
 
         $validatedData = $this->validateUpdateRequest($request->all());
         $this->item->update($validatedData);
-        if ($request->hasFile('image')) {
-            $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        if ($request->hasFile('cropper')) {
+            $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
         }
 
         return $this->updateResponse();
@@ -83,7 +88,7 @@ class PartnerController extends Controller
     public function getValidationRulesForUpdate(): array
     {
         return array_merge($this->validationRules(), [
-            'image' => ['nullable', 'image'],
+            'cropper' => ['nullable', 'image'],
         ]);
     }
 }
