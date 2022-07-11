@@ -1,6 +1,7 @@
 <tr class="row-{{ $item->id }}"  @if(isset($loop))data-index="{{$loop->iteration}}"@endif>
     <td class="text-center align-middle">{{ $item->id }}</td>
 
+    <td class="align-middle">@isset($item->created_at){{ $item->created_at->format('Y.m.d H:i') }}@endisset</td>
     <td class="align-middle">{{ $item->last_name }}</td>
     <td class="align-middle">{{ $item->first_name }}</td>
     <td class="align-middle">{{ $item->date_of_birth }}</td>
@@ -11,7 +12,6 @@
     <td class="align-middle">{{ $item->email }}</td>
     <td class="align-middle">{{ $item->source }}</td>
     <td class="align-middle">{{ $item->parent_name }}</td>
-    <td class="align-middle">@isset($item->created_at){{ $item->created_at->format('Y.m.d H:i') }}@endisset</td>
 
     <td class="text-center aliggn-middle">
         <a href="#" data-url="{{ route($config('route.edit'), ['id' => $item->id ]) }}" class="handle-click" data-type="modal" data-modal="largeModal">

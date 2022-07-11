@@ -15,6 +15,7 @@
 @endsection
 
 @section('table_head')
+    <th>Дата получения</th>
     <th>Фамилия</th>
     <th>Имя</th>
     <th>Дата рождения</th>
@@ -25,5 +26,4 @@
     <th>Email</th>
     <th>Источник</th>
     <th>ФИО родителя / законного представителя</th>
-    <th>Дата получения</th>
 @endsection
