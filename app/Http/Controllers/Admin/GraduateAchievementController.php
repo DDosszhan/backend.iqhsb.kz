@@ -40,6 +40,11 @@ class GraduateAchievementController extends Controller
                 'form' => 'admin.graduate-achievements.form',
                 'item' => 'admin.graduate-achievements.item',
             ],
+            'cropper' => [
+                'width' => 180,
+                'height' => 180,
+                'quality' => 1,
+            ],
         ];
     }
 
@@ -57,7 +62,7 @@ class GraduateAchievementController extends Controller
             'city' => ['required', "array:$locales"],
             "city.$defaultLocale" => ['required', 'string', 'max:255'],
             'year' => ['required', 'digits:4', 'integer', 'min:1900', 'max:' . ((int)date('Y') + 1)],
-            'image' => ['required', 'image'],
+            'cropper' => ['required', 'image'],
         ];
     }
 
@@ -65,7 +70,7 @@ class GraduateAchievementController extends Controller
     {
         $validatedData = $this->validateStoreRequest($request->all());
         $this->item = $this->repository->getModel()->create($validatedData);
-        $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
 
         return $this->storeResponse();
     }
@@ -76,8 +81,8 @@ class GraduateAchievementController extends Controller
 
         $validatedData = $this->validateUpdateRequest($request->all());
         $this->item->update($validatedData);
-        if ($request->hasFile('image')) {
-            $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        if ($request->hasFile('cropper')) {
+            $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
         }
 
         return $this->updateResponse();
@@ -86,7 +91,7 @@ class GraduateAchievementController extends Controller
     public function getValidationRulesForUpdate(): array
     {
         return array_merge($this->validationRules(), [
-            'image' => ['nullable', 'image'],
+            'cropper' => ['nullable', 'image'],
         ]);
     }
 
