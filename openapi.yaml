@@ -162,7 +162,7 @@ paths:
     get:
       summary: Контент
       description: Выводит контент по {slug}
-      operationId: getPages
+      operationId: getPage
       parameters:
         - in: path
           name: slug
@@ -177,6 +177,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Page'
+  /files/{slug}:
+    get:
+      summary: Файл
+      description: Ссылка на файл
+      operationId: getFile
+      parameters:
+        - in: path
+          name: slug
+          description: Запрос успешно выполнен
+          required: true
+          schema:
+            $ref: '#/components/schemas/FileList'
+      responses:
+        '200':
+          description: Запрос успешно выполнен
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
   /questionnaires:
     post:
       summary: Анкеты
@@ -545,7 +565,13 @@ components:
       enum:
         - about
         - program
-      default: home
+      default: about
+    FileList:
+      type: string
+      enum:
+        - stage_2
+        - stage_4
+      default: stage_2
     sendQuestionnaire:
       type: object
       required:
