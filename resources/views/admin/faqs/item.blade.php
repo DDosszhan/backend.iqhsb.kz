@@ -2,7 +2,6 @@
     <td class="text-center align-middle">{{ $item->id }}</td>
 
     <td class="align-middle">{{ $item->question }}</td>
-    <td class="align-middle">{{ $item->answer }}</td>
     <td class="align-middle text-center">
         <i class="la la-power-off" style="color:@if($item->active) green; @else red;@endif"></i>
     </td>
