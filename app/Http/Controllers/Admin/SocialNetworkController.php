@@ -10,9 +10,9 @@ class SocialNetworkController extends Controller
 {
     use AdminBase;
 
-    public function __construct(SocialNetworkRepository $socialNetworkRepository)
+    public function __construct(SocialNetworkRepository $repository)
     {
-        $this->repository = $socialNetworkRepository;
+        $this->repository = $repository;
     }
 
     public function initConfig(): array
@@ -43,7 +43,7 @@ class SocialNetworkController extends Controller
     public function validationRules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+//            'name' => ['required', 'string', 'max:255'],
             'url' => ['required', 'string', 'max:255', 'url'],
         ];
     }

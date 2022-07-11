@@ -6,7 +6,7 @@
             <div class="form-group">
                 <label for="name">Название</label>
                 <input type="text" class="form-control" id="name" name="name"
-                       @if(isset($item)) value="{{ $item->name }}" @endif>
+                       @if(isset($item)) value="{{ $item->name }}" @endif disabled>
                 <p class="help-block"></p>
             </div>
             <div class="form-group">
