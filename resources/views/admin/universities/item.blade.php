@@ -4,9 +4,9 @@
     <td class="align-middle">{{ $item->name }}</td>
     <td class="align-middle">
         @if(isset($item) && $item->getFirstMedia('default'))
-            <img width="100" src="{{ $item->getFirstMedia('default')->getFullUrl() }}">
+            <img width="78" src="{{ $item->getFirstMedia('default')->getFullUrl() }}">
         @else
-            <img width="100" src="/core/adminLTE/assets/app/media/img/error/noimage.png">
+            <img width="78" src="/core/adminLTE/assets/app/media/img/error/noimage.png">
         @endif
     </td>
 

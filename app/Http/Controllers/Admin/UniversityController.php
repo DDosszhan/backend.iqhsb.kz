@@ -40,9 +40,12 @@ class UniversityController extends Controller
                 'item' => 'admin.universities.item',
             ],
             'cropper' => [
-                'width' => 1000,
-                'height' => 500,
-                'quality' => 0.8,
+                'width' => 78,
+                'height' => 78,
+                'quality' => 1,
+                'mimeType' => 'image/png',
+                'extension' => 'png',
+                'viewMode' => 0,
             ],
         ];
     }
