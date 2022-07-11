@@ -24,7 +24,7 @@ return new class extends Migration {
         $data = [
             [
                 'slug' => 'home',
-                'title' => 'IQanat high school of burabay',
+                'title' => 'IQanat high school of Burabay',
                 'settings' => [
                     'has_content' => true,
                     'cropper_width' => 640,
