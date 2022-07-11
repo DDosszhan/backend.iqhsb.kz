@@ -1,6 +1,7 @@
 <form action="{{ $formAction }}" method="post" class="ajax"
       data-ui-block-type="element" data-ui-block-element="#largeModal .modal-body" id="ajaxForm">
 
+    @include('core::fields.cropper')
 
     <ul class="nav nav-tabs" role="tablist" style="margin-top: 5px;">
         @foreach(config('project.locales') as $count => $locale)
@@ -33,22 +34,6 @@
                 </fieldset>
             </div>
         @endforeach
-
-        <fieldset>
-            <legend>Фото преподавателя <span class="text-danger">*</span></legend>
-            <div class="form-group">
-                <input type="file" class="form-input-image-media" id="image" name="image"
-                       accept="image/x-png,image/gif,image/jpeg,image/svg+xml">
-                <p class="help-block"></p>
-
-                @if(isset($item) && $item->getFirstMedia('default'))
-                    <fieldset>
-                        <legend>Текущее фото</legend>
-                        <img width="150" src="{{ $item->getFirstMedia('default')->getFullUrl() }}">
-                    </fieldset>
-                @endif
-            </div>
-        </fieldset>
 
         <button type="button" class="btn btn-accent btn-sm float-right"
                 data-dismiss="modal">{{ $config('button.cancel') }}</button>
