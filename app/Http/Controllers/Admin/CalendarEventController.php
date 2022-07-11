@@ -39,6 +39,11 @@ class CalendarEventController extends Controller
                 'form' => 'admin.calendar-events.form',
                 'item' => 'admin.calendar-events.item',
             ],
+            'cropper' => [
+                'width' => 250,
+                'height' => 180,
+                'quality' => 1,
+            ],
         ];
     }
 
@@ -52,7 +57,7 @@ class CalendarEventController extends Controller
             "title.$defaultLocale" => ['required', 'string', 'max:255'],
             'start_date' => ['required', 'date_format:Y-m-d'],
             'end_date' => ['nullable', 'date_format:Y-m-d', 'after:start_date'],
-            'image' => ['required', 'image'],
+            'cropper' => ['required', 'image'],
         ];
     }
 
@@ -60,7 +65,7 @@ class CalendarEventController extends Controller
     {
         $validatedData = $this->validateStoreRequest($request->all());
         $this->item = $this->repository->getModel()->create($validatedData);
-        $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
 
         return $this->storeResponse();
     }
@@ -71,8 +76,8 @@ class CalendarEventController extends Controller
 
         $validatedData = $this->validateUpdateRequest($request->all());
         $this->item->update($validatedData);
-        if ($request->hasFile('image')) {
-            $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        if ($request->hasFile('cropper')) {
+            $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
         }
 
         return $this->updateResponse();
@@ -81,7 +86,7 @@ class CalendarEventController extends Controller
     public function getValidationRulesForUpdate(): array
     {
         return array_merge($this->validationRules(), [
-            'image' => ['nullable', 'image'],
+            'cropper' => ['nullable', 'image'],
         ]);
     }
 }

@@ -4360,17 +4360,17 @@
         },
         {
             "name": "starter-kit/core",
-            "version": "v4.0.5",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.ibecsystems.kz:starter-kit/core.git",
-                "reference": "7260410df68011961fc548218fc88b6ae8b0b1d6"
+                "reference": "43b640394ebf26a4db54c6f9b160b4d41dc4029e"
             },
             "dist": {
                 "type": "tar",
-                "url": "https://gitlab.ibecsystems.kz/dist/starter-kit/core/starter-kit-core-7260410df68011961fc548218fc88b6ae8b0b1d6-zip-8d5a1d.tar",
-                "reference": "7260410df68011961fc548218fc88b6ae8b0b1d6",
-                "shasum": "3390ca3dda2c555c4111b9da923b960b713d9c4e"
+                "url": "https://gitlab.ibecsystems.kz/dist/starter-kit/core/starter-kit-core-43b640394ebf26a4db54c6f9b160b4d41dc4029e-zip-188e0b.tar",
+                "reference": "43b640394ebf26a4db54c6f9b160b4d41dc4029e",
+                "shasum": "d0694dd6dbf2274c2e1463f0ed41ea858306f2a3"
             },
             "require": {
                 "buzz/laravel-google-captcha": "2.*",
@@ -4406,7 +4406,7 @@
                 }
             ],
             "description": "A packages StarterKit iBEC Systems",
-            "time": "2022-07-08T20:14:43+09:00"
+            "time": "2022-07-09T18:08:19+09:00"
         },
         {
             "name": "starter-kit/news",
