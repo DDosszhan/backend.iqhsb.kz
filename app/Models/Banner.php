@@ -23,6 +23,9 @@ class Banner extends Model implements HasMedia
         'button_url',
     ];
     protected $translatable = ['title', 'content', 'button_text', 'button_url'];
+    protected $casts = [
+        'settings' => 'array',
+    ];
 
     public function registerMediaCollections(): void
     {

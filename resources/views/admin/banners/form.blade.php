@@ -25,12 +25,14 @@
                                @if(isset($item)) value="{{ $item->getTranslation('title', $locale) }}" @endif>
                         <p class="help-block"></p>
                     </div>
-                    <div class="form-group">
-                        <label for="content.{{$locale}}">Описание ({{ $locale }}) <span class="text-danger">*</span></label>
-                        <textarea type="text" class="form-control editor_short" id="content.{{$locale}}"
-                                  name="content[{{ $locale }}]">@isset($item){{ $item->getTranslation('content', $locale) }}@endisset</textarea>
-                        <p class="help-block"></p>
-                    </div>
+                    @if($config('banner.hasContent'))
+                        <div class="form-group">
+                            <label for="content.{{$locale}}">Описание ({{ $locale }}) <span class="text-danger">*</span></label>
+                            <textarea type="text" class="form-control editor_short" id="content.{{$locale}}"
+                                      name="content[{{ $locale }}]">@isset($item){{ $item->getTranslation('content', $locale) }}@endisset</textarea>
+                            <p class="help-block"></p>
+                        </div>
+                    @endif
                     <div class="form-group">
                         <label for="button_text.{{$locale}}">Текст кнопки ({{ $locale }}) <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="button_text.{{$locale}}" name="button_text[{{ $locale }}]"

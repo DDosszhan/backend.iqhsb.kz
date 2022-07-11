@@ -41,9 +41,8 @@
                         <th width="50" class="text-center">#</th>
 
                         <!-- table columns -->
-                        <th>Код</th>
-                        <th width="200">Изображение</th>
                         <th>Заголовок</th>
+                        <th width="200">Изображение</th>
                         <th>Текст кнопки</th>
                         <th>URL кнопки</th>
 

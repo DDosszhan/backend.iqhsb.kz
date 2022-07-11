@@ -17,7 +17,7 @@ class BannerController extends Controller
         $this->repository = $repository;
     }
 
-    public function setConfig(): array
+    public function initConfig(): array
     {
         return [
             'title' => [
@@ -39,11 +39,6 @@ class BannerController extends Controller
                 'form' => 'admin.banners.form',
                 'item' => 'admin.banners.item',
             ],
-            'cropper' => [
-                'width' => 1280,
-                'height' => 720,
-                'quality' => 0.8,
-            ],
         ];
     }
 
@@ -55,14 +50,29 @@ class BannerController extends Controller
         return [
             'title' => ['required', "array:$locales"],
             "title.$defaultLocale" => ['required', 'string', 'max:255'],
-            'content' => ['required', "array:$locales"],
-            "content.$defaultLocale" => ['required', 'string', 'max:255'],
+            'content' => ['nullable', "array:$locales"],
+            "content.$defaultLocale" => ['nullable', 'string', 'max:255'],
             'button_text' => ['required', "array:$locales"],
             "button_text.$defaultLocale" => ['required', 'string', 'max:255'],
             'button_url' => ['required', "array:$locales"],
             "button_url.$defaultLocale" => ['required', 'string', 'max:255'],
             'cropper' => ['required', 'image'],
         ];
+    }
+
+    public function create()
+    {
+        $this->setConfig([
+            'cropper' => [
+                'width' => $this->item->settings['cropper_width'],
+                'height' => $this->item->settings['cropper_height'],
+                'quality' => 0.8,
+            ],
+            'banner' => [
+                'hasContent' => $this->item->settings['has_content'],
+            ],
+        ]);
+        return $this->createResponse();
     }
 
     public function store(Request $request): JsonResponse
@@ -72,6 +82,22 @@ class BannerController extends Controller
         $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
 
         return $this->storeResponse();
+    }
+
+    public function edit(int $id): JsonResponse
+    {
+        $this->item = $this->findById($id);
+        $this->setConfig([
+            'cropper' => [
+                'width' => $this->item->settings['cropper_width'],
+                'height' => $this->item->settings['cropper_height'],
+                'quality' => 0.8,
+            ],
+            'banner' => [
+                'hasContent' => $this->item->settings['has_content'],
+            ],
+        ]);
+        return $this->editResponse();
     }
 
     public function update(int $id, Request $request): JsonResponse
