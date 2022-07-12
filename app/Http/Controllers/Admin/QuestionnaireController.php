@@ -5,20 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\QuestionnaireGrade;
 use App\Enums\QuestionnaireLanguage;
 use App\Enums\QuestionnaireSource;
+use App\Exports\QuestionnairesExport;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\QuestionnaireRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Enum;
+use Maatwebsite\Excel\Excel;
 use StarterKit\Core\Traits\AdminBase;
 
 class QuestionnaireController extends Controller
 {
     use AdminBase;
 
-    public function __construct(QuestionnaireRepository $repository)
+    private Excel $excel;
+
+    public function __construct(QuestionnaireRepository $repository, Excel $excel)
     {
         $this->repository = $repository;
+        $this->excel = $excel;
     }
 
     public function initConfig(): array
@@ -37,6 +42,7 @@ class QuestionnaireController extends Controller
                 'edit' => 'admin.questionnaires.edit',
                 'update' => 'admin.questionnaires.update',
                 'delete' => 'admin.questionnaires.delete',
+                'export' => 'admin.questionnaires.export',
             ],
             'view' => [
                 'index' => 'admin.questionnaires.index',
@@ -68,5 +74,10 @@ class QuestionnaireController extends Controller
         $this->items = $this->repository->order('created_at', 'desc')->withDataFilter($request);
 
         return $this->listResponse();
+    }
+
+    public function export()
+    {
+        return $this->excel->download(new QuestionnairesExport, 'questionnaires.xlsx');
     }
 }

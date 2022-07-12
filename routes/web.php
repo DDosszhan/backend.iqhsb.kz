@@ -72,6 +72,7 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [QuestionnaireController::class, 'edit'])->name('admin.questionnaires.edit');
         Route::post('/{id}/update', [QuestionnaireController::class, 'update'])->name('admin.questionnaires.update');
         Route::get('/{id}/delete', [QuestionnaireController::class, 'delete'])->name('admin.questionnaires.delete');
+        Route::get('/export', [QuestionnaireController::class, 'export'])->name('admin.questionnaires.export');
     });
     Route::group(['prefix' => 'calendar-events'], function () {
         Route::get('/', [CalendarEventController::class, 'index'])->name('admin.calendar-events.index');

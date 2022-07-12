@@ -15,13 +15,23 @@
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
                         <a href="#"
-                           class="m-portlet__nav-link m-portlet__nav-link--icon  show-filter"
+                           class="m-portlet__nav-link m-portlet__nav-link--icon show-filter"
                            data-container="body"
                            data-toggle="m-tooltip"
                            data-placement="top"
                            title=""
                            data-original-title="Найти анкету">
                             <i class="la la-filter"></i>
+                        </a>
+                    </li>
+                    <li class="m-portlet__nav-item">
+                        <a href="{{ route('admin.questionnaires.export') }}"
+                           class="m-portlet__nav-link m-portlet__nav-link--icon"
+                           id="export-button"
+                           data-toggle="m-tooltip"
+                           data-placement="top"
+                           title="Импорт в Excel">
+                            <i class="la la-download"></i>
                         </a>
                     </li>
                     {{--    <li class="m-portlet__nav-item">--}}
