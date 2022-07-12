@@ -4,6 +4,6 @@
 
 @if(!$items->count())
     <tr>
-        <td colspan="{{ $tableColumnCount }}" class="text-center">Данных не найдено</td>
+        <td colspan="100" class="text-center">Данных не найдено</td>
     </tr>
 @endif
