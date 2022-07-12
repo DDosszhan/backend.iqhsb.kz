@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\ConsultationRequestRepository;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use StarterKit\Core\Traits\AdminBase;
 
 class ConsultationRequestController extends Controller
@@ -24,6 +26,7 @@ class ConsultationRequestController extends Controller
                 'edit' => 'Редактировать запрос консультации',
             ],
             'route' => [
+                'index' => 'admin.consultation-requests.index',
                 'list' => 'admin.consultation-requests.list',
                 'create' => 'admin.consultation-requests.create',
                 'store' => 'admin.consultation-requests.store',
@@ -46,5 +49,11 @@ class ConsultationRequestController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
         ];
+    }
+
+    public function list(Request $request): JsonResponse
+    {
+        $this->items = $this->repository->order('created_at', 'desc')->withDataFilter($request);
+        return $this->listResponse();
     }
 }
