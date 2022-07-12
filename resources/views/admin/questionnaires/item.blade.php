@@ -1,10 +1,10 @@
 <tr class="row-{{ $item->id }}"  @if(isset($loop))data-index="{{$loop->iteration}}"@endif>
     <td class="text-center align-middle">{{ $item->id }}</td>
 
-    <td class="align-middle">@isset($item->created_at){{ $item->created_at->format('Y.m.d H:i') }}@endisset</td>
+    <td class="align-middle">@isset($item->created_at){{ $item->created_at->format('d.m.Y H:i') }}@endisset</td>
     <td class="align-middle">{{ $item->last_name }}</td>
     <td class="align-middle">{{ $item->first_name }}</td>
-    <td class="align-middle">{{ $item->date_of_birth }}</td>
+    <td class="align-middle">{{ $item->date_of_birth->format('d.m.Y') }}</td>
     <td class="align-middle">{{ $item->grade }}</td>
     <td class="align-middle">{{ $item->language }}</td>
     <td class="align-middle">{{ $item->school }}</td>

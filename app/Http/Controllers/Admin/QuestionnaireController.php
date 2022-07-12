@@ -7,6 +7,7 @@ use App\Enums\QuestionnaireLanguage;
 use App\Enums\QuestionnaireSource;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\QuestionnaireRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Enum;
 use StarterKit\Core\Traits\AdminBase;
@@ -59,5 +60,12 @@ class QuestionnaireController extends Controller
             'source' => ['required', new Enum(QuestionnaireSource::class)],
             'parent_name' => ['required', 'string', 'max:255'],
         ];
+    }
+
+    public function list(Request $request): JsonResponse
+    {
+        $this->items = $this->repository->order('created_at', 'desc')->withDataFilter($request);
+
+        return $this->listResponse();
     }
 }
