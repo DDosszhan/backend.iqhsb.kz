@@ -20,7 +20,7 @@
                            data-toggle="m-tooltip"
                            data-placement="top"
                            title=""
-                           data-original-title="Найти новость">
+                           data-original-title="Найти анкету">
                             <i class="la la-filter"></i>
                         </a>
                     </li>
