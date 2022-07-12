@@ -63,6 +63,7 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [ConsultationRequestController::class, 'edit'])->name('admin.consultation-requests.edit');
         Route::post('/{id}/update', [ConsultationRequestController::class, 'update'])->name('admin.consultation-requests.update');
         Route::get('/{id}/delete', [ConsultationRequestController::class, 'delete'])->name('admin.consultation-requests.delete');
+        Route::get('/export', [ConsultationRequestController::class, 'export'])->name('admin.consultation-requests.export');
     });
     Route::group(['prefix' => 'questionnaires'], function () {
         Route::get('/', [QuestionnaireController::class, 'index'])->name('admin.questionnaires.index');

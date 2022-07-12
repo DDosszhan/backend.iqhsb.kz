@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ConsultationRequestsExport;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\ConsultationRequestRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
 use StarterKit\Core\Traits\AdminBase;
 
 class ConsultationRequestController extends Controller
 {
     use AdminBase;
 
-    public function __construct(ConsultationRequestRepository $repository)
+    private Excel $excel;
+
+    public function __construct(ConsultationRequestRepository $repository, Excel $excel)
     {
         $this->repository = $repository;
+        $this->excel = $excel;
     }
 
     public function initConfig(): array
@@ -55,5 +60,10 @@ class ConsultationRequestController extends Controller
     {
         $this->items = $this->repository->order('created_at', 'desc')->withDataFilter($request);
         return $this->listResponse();
+    }
+
+    public function export()
+    {
+        return $this->excel->download(new ConsultationRequestsExport, 'consultation-requests.xlsx');
     }
 }

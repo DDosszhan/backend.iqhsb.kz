@@ -24,6 +24,16 @@
                             <i class="la la-filter"></i>
                         </a>
                     </li>
+                    <li class="m-portlet__nav-item">
+                        <a href="{{ route('admin.consultation-requests.export') }}"
+                           class="m-portlet__nav-link m-portlet__nav-link--icon"
+                           id="export-button"
+                           data-toggle="m-tooltip"
+                           data-placement="top"
+                           title="Импорт в Excel">
+                            <i class="la la-download"></i>
+                        </a>
+                    </li>
                     {{--    <li class="m-portlet__nav-item">--}}
                     {{--        <a href="#" data-url="{{ route($config('route.create')) }}"--}}
                     {{--           data-type="modal" data-modal="largeModal"--}}
