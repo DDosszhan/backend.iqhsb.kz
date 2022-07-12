@@ -30,6 +30,7 @@ class QuestionnaireController extends Controller
                 'edit' => 'Редактировать анкету',
             ],
             'route' => [
+                'index' => 'admin.questionnaires.index',
                 'list' => 'admin.questionnaires.list',
                 'create' => 'admin.questionnaires.create',
                 'store' => 'admin.questionnaires.store',
