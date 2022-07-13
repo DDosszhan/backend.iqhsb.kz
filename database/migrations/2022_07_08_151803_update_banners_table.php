@@ -15,6 +15,7 @@ return new class extends Migration {
         Schema::table('banners', function (Blueprint $table) {
             $table->json('settings')->default(json_encode([
                 'has_content' => false,
+                'has_button' => false,
                 'cropper_width' => 1120,
                 'cropper_height' => 442,
             ]));
@@ -27,6 +28,7 @@ return new class extends Migration {
                 'title' => 'IQanat high school of Burabay',
                 'settings' => [
                     'has_content' => true,
+                    'has_button' => true,
                     'cropper_width' => 640,
                     'cropper_height' => 610,
                 ],
@@ -36,6 +38,7 @@ return new class extends Migration {
                 'title' => 'Жизнь в школе',
                 'settings' => [
                     'has_content' => false,
+                    'has_button' => false,
                     'cropper_width' => 1120,
                     'cropper_height' => 442,
                 ],
@@ -45,6 +48,7 @@ return new class extends Migration {
                 'title' => 'Программа обучения',
                 'settings' => [
                     'has_content' => false,
+                    'has_button' => false,
                     'cropper_width' => 1120,
                     'cropper_height' => 442,
                 ],
@@ -54,6 +58,7 @@ return new class extends Migration {
                 'title' => 'Как поступить',
                 'settings' => [
                     'has_content' => false,
+                    'has_button' => false,
                     'cropper_width' => 1120,
                     'cropper_height' => 442,
                 ],

@@ -52,10 +52,10 @@ class BannerController extends Controller
             "title.$defaultLocale" => ['required', 'string', 'max:255'],
             'content' => ['nullable', "array:$locales"],
             "content.$defaultLocale" => ['nullable', 'string', 'max:1024'],
-            'button_text' => ['required', "array:$locales"],
-            "button_text.$defaultLocale" => ['required', 'string', 'max:255'],
-            'button_url' => ['required', "array:$locales"],
-            "button_url.$defaultLocale" => ['required', 'string', 'max:255'],
+            'button_text' => ['nullable', "array:$locales"],
+            "button_text.$defaultLocale" => ['nullable', 'string', 'max:255'],
+            'button_url' => ['nullable', "array:$locales"],
+            "button_url.$defaultLocale" => ['nullable', 'string', 'max:255'],
             'cropper' => ['required', 'image'],
         ];
     }
@@ -64,12 +64,13 @@ class BannerController extends Controller
     {
         $this->setConfig([
             'cropper' => [
-                'width' => $this->item->settings['cropper_width'],
-                'height' => $this->item->settings['cropper_height'],
+                'width' => $this->item->getConfig('cropper_width'),
+                'height' => $this->item->getConfig('cropper_height'),
                 'quality' => 0.8,
             ],
             'banner' => [
-                'hasContent' => $this->item->settings['has_content'],
+                'hasContent' => $this->item->getConfig('has_content'),
+                'hasButton' => $this->item->getConfig('has_button'),
             ],
         ]);
         return $this->createResponse();
@@ -89,12 +90,13 @@ class BannerController extends Controller
         $this->item = $this->findById($id);
         $this->setConfig([
             'cropper' => [
-                'width' => $this->item->settings['cropper_width'],
-                'height' => $this->item->settings['cropper_height'],
+                'width' => $this->item->getConfig('cropper_width'),
+                'height' => $this->item->getConfig('cropper_height'),
                 'quality' => 0.8,
             ],
             'banner' => [
-                'hasContent' => $this->item->settings['has_content'],
+                'hasContent' => $this->item->getConfig('has_content'),
+                'hasButton' => $this->item->getConfig('has_button'),
             ],
         ]);
         return $this->editResponse();

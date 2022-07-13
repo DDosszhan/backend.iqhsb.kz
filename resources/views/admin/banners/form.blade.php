@@ -33,18 +33,20 @@
                             <p class="help-block"></p>
                         </div>
                     @endif
+                    @if($config('banner.hasButton'))
                     <div class="form-group">
-                        <label for="button_text.{{$locale}}">Текст кнопки ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="button_text.{{$locale}}">Текст кнопки ({{ $locale }})</label>
                         <input type="text" class="form-control" id="button_text.{{$locale}}" name="button_text[{{ $locale }}]"
                                @if(isset($item)) value="{{ $item->getTranslation('button_text', $locale) }}" @endif>
                         <p class="help-block"></p>
                     </div>
                     <div class="form-group">
-                        <label for="button_url.{{$locale}}">URL кнопки ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="button_url.{{$locale}}">URL кнопки ({{ $locale }})</label>
                         <input type="text" class="form-control" id="button_url.{{$locale}}" name="button_url[{{ $locale }}]"
                                @if(isset($item)) value="{{ $item->getTranslation('button_url', $locale) }}" @endif>
                         <p class="help-block"></p>
                     </div>
+                        @endif
                 </fieldset>
             </div>
         @endforeach
