@@ -43,8 +43,6 @@
                         <!-- table columns -->
                         <th>Заголовок</th>
                         <th width="200">Изображение</th>
-                        <th>Текст кнопки</th>
-                        <th>URL кнопки</th>
 
                         <th class="text-center" width="100"><i class="fa fa-bars" aria-hidden="true"></i></th>
                     </tr>

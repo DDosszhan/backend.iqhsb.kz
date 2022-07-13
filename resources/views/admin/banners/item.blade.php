@@ -8,8 +8,6 @@
         @else
             <img width="100" src="/core/adminLTE/assets/app/media/img/error/noimage.png">
         @endif
-    <td class="align-middle">{{ $item->button_text }}</td>
-    <td class="align-middle">{{ $item->button_url }}</td>
 
     <td class="text-center align-middle">
         <a href="#" data-url="{{ route($config('route.edit'), ['id' => $item->id ]) }}" class="handle-click" data-type="modal" data-modal="largeModal">
