@@ -19,13 +19,13 @@
                     <legend>Информация об элементе</legend>
 
                     <div class="form-group">
-                        <label for="question.{{$locale}}">Вопрос ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="question.{{$locale}}">Вопрос ({{ $locale }}) @if($locale === config('project.default_locale'))<span class="text-danger">*</span>@endif</label>
                         <input type="text" class="form-control" id="question.{{$locale}}" name="question[{{ $locale }}]"
                                @if(isset($item)) value="{{ $item->getTranslation('question', $locale) }}" @endif>
                         <p class="help-block"></p>
                     </div>
                     <div class="form-group">
-                        <label for="answer.{{$locale}}">Ответ ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="answer.{{$locale}}">Ответ ({{ $locale }}) @if($locale === config('project.default_locale'))<span class="text-danger">*</span>@endif</label>
                         <textarea type="text" class="form-control editor_short" id="answer.{{$locale}}"
                                   name="answer[{{ $locale }}]">@isset($item){{ $item->getTranslation('answer', $locale) }}@endisset</textarea>
                         <p class="help-block"></p>

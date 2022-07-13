@@ -20,15 +20,14 @@
                     <legend>Информация об элементе</legend>
 
                     <div class="form-group">
-                        <label for="graduate_name.{{$locale}}">Имя выпускника ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="graduate_name.{{$locale}}">Имя выпускника ({{ $locale }}) @if($locale === config('project.default_locale'))<span class="text-danger">*</span>@endif</label>
                         <input type="text" class="form-control" id="graduate_name.{{$locale}}"
                                name="graduate_name[{{ $locale }}]"
                                @if(isset($item)) value="{{ $item->getTranslation('graduate_name', $locale) }}" @endif>
                         <p class="help-block"></p>
                     </div>
                     <div class="form-group">
-                        <label for="description.{{$locale}}">Текст ({{ $locale }}) <span
-                                class="text-danger">*</span></label>
+                        <label for="description.{{$locale}}">Текст ({{ $locale }}) @if($locale === config('project.default_locale'))<span class="text-danger">*</span>@endif</label>
                         <textarea type="text" class="form-control editor_short" id="description.{{$locale}}"
                                   name="description[{{ $locale }}]">@isset($item)
                                 {{ $item->getTranslation('description', $locale) }}
@@ -36,7 +35,7 @@
                         <p class="help-block"></p>
                     </div>
                     <div class="form-group">
-                        <label for="city.{{$locale}}">Город ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="city.{{$locale}}">Город ({{ $locale }}) @if($locale === config('project.default_locale'))<span class="text-danger">*</span>@endif</label>
                         <input type="text" class="form-control" id="city.{{$locale}}" name="city[{{ $locale }}]"
                                @if(isset($item)) value="{{ $item->getTranslation('city', $locale) }}" @endif>
                         <p class="help-block"></p>

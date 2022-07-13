@@ -20,13 +20,13 @@
                     <legend>Информация об элементе</legend>
 
                     <div class="form-group">
-                        <label for="name.{{$locale}}">Имя ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="name.{{$locale}}">Имя ({{ $locale }}) @if($locale === config('project.default_locale'))<span class="text-danger">*</span>@endif</label>
                         <input type="text" class="form-control" id="name.{{$locale}}" name="name[{{ $locale }}]"
                                @if(isset($item)) value="{{ $item->getTranslation('name', $locale) }}" @endif>
                         <p class="help-block"></p>
                     </div>
                     <div class="form-group">
-                        <label for="position.{{$locale}}">Позиция ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="position.{{$locale}}">Позиция ({{ $locale }}) @if($locale === config('project.default_locale'))<span class="text-danger">*</span>@endif</label>
                         <input type="text" class="form-control" id="position.{{$locale}}" name="position[{{ $locale }}]"
                                @if(isset($item)) value="{{ $item->getTranslation('position', $locale) }}" @endif>
                         <p class="help-block"></p>

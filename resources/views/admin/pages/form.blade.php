@@ -19,7 +19,7 @@
                     <legend>Информация об элементе</legend>
 
                     <div class="form-group">
-                        <label for="title.{{$locale}}">Заголовок ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="title.{{$locale}}">Заголовок ({{ $locale }}) @if($locale === config('project.default_locale'))<span class="text-danger">*</span>@endif</label>
                         <input type="text" class="form-control" id="title.{{$locale}}" name="title[{{ $locale }}]"
                                @if(isset($item)) value="{{ $item->getTranslation('title', $locale) }}" @endif>
                         <p class="help-block"></p>
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="content.{{$locale}}">Содержание ({{ $locale }}) <span class="text-danger">*</span></label>
+                        <label for="content.{{$locale}}">Содержание ({{ $locale }}) @if($locale === config('project.default_locale'))<span class="text-danger">*</span>@endif</label>
                         <textarea type="text" class="form-control editor" id="content.{{$locale}}"
                                   name="content[{{ $locale }}]">@isset($item){{ $item->getTranslation('content', $locale) }}@endisset</textarea>
                         <p class="help-block"></p>
