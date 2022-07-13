@@ -4,14 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\PageRepository;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use StarterKit\Core\Traits\AdminBase;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends Controller
 {
@@ -63,6 +59,8 @@ class PageController extends Controller
             'blocks.*.content' => ['nullable', "array:$locales"],
             "blocks.*.content.$defaultLocale" => ['nullable', 'string', 'max:65535'],
             'image' => ['nullable', 'image'],
+            'gallery' => ['nullable', 'array'],
+            'gallery.*' => ['nullable', 'image'],
         ];
     }
 
@@ -71,13 +69,16 @@ class PageController extends Controller
         $validatedData = $this->validateStoreRequest($request->all());
         $this->item = $this->repository->getModel()->create(array_merge($validatedData, [
             'settings' => [
+                'has_gallery' => false,
                 'block_count' => 0,
                 'removable' => true,
             ],
         ]));
 
-        if ($request->hasFile('image')) {
-            $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        if ($request->hasFile('gallery')) {
+            $this->item->addMultipleMediaFromRequest(['gallery'])->each(function ($fileAdder) {
+                $fileAdder->toMediaCollection('gallery');
+            });
         }
 
         return $this->storeResponse();
@@ -89,8 +90,10 @@ class PageController extends Controller
 
         $validatedData = $this->validateUpdateRequest($request->all());
         $this->item->update($validatedData);
-        if ($request->hasFile('image')) {
-            $this->item->addMedia($request->file('image'))->toMediaCollection('default');
+        if ($request->hasFile('gallery')) {
+            $this->item->addMultipleMediaFromRequest(['gallery'])->each(function ($fileAdder) {
+                $fileAdder->toMediaCollection('gallery');
+            });
         }
 
         return $this->updateResponse();

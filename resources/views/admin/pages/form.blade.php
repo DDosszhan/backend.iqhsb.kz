@@ -1,4 +1,4 @@
-<form action="{{ $formAction }}" method="post" class="ajax"
+<form action="{{ $formAction }}" method="post" class="ajax" enctype="multipart/form-data"
       data-ui-block-type="element" data-ui-block-element="#largeModal .modal-body" id="ajaxForm">
 
 
@@ -80,6 +80,25 @@
                 @endif
             </div>
         </fieldset>
+
+        @if(isset($item) && $item->getConfig('has_gallery'))
+            <fieldset>
+                <legend>Галерея</legend>
+                <div class="form-group">
+                    <input type="file" id="gallery" name="gallery[]" multiple accept="image/x-png,image/gif,image/jpeg,image/svg+xml">
+                    <p class="help-block"></p>
+
+                    @if(isset($item) && $item->getFirstMedia('gallery'))
+                        <fieldset>
+                            <legend>Загруженные изображения</legend>
+                            @foreach($item->getMedia('gallery') as $media)
+                                <img width="150" src="{{ $media->getFullUrl() }}" class="p-1 m-1 border">
+                            @endforeach
+                        </fieldset>
+                    @endif
+                </div>
+            </fieldset>
+        @endif
 
         <button type="button" class="btn btn-accent btn-sm float-right" data-dismiss="modal">{{ $config('button.cancel') }}</button>
         <button type="submit" class="btn btn-brand btn-sm">{{ $config('button.create') }}</button>

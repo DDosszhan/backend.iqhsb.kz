@@ -27,6 +27,7 @@ return new class extends Migration {
                 'title' => 'О школе',
                 'blocks' => null,
                 'settings' => [
+                    'has_gallery' => true,
                     'block_count' => 0,
                     'removable' => false,
                 ],
@@ -73,6 +74,7 @@ return new class extends Migration {
                     ],
                 ],
                 'settings' => [
+                    'has_gallery' => false,
                     'block_count' => 3,
                     'removable' => false,
                 ],

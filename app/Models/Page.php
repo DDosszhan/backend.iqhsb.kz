@@ -36,4 +36,13 @@ class Page extends Model implements HasMedia
             ]
         ];
     }
+
+    public function getConfig(string $name): mixed
+    {
+        if (isset($this->settings[$name])) {
+            return $this->settings[$name];
+        }
+
+        return null;
+    }
 }
