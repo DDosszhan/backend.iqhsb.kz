@@ -89,10 +89,22 @@
                     <p class="help-block"></p>
 
                     @if(isset($item) && $item->getFirstMedia('gallery'))
-                        <fieldset>
+                        <fieldset style="display: flex; flex-direction: row; flex-wrap: wrap;">
                             <legend>Загруженные изображения</legend>
                             @foreach($item->getMedia('gallery') as $media)
-                                <img width="150" src="{{ $media->getFullUrl() }}" class="p-1 m-1 border">
+                                <div id="gallery-media-{{ $media->id }}" style="width: 150px; display: flex; flex-direction: column; justify-content: center; margin: 0 10px 10px 0">
+                                    <img width="150" src="{{ $media->getFullUrl() }}" class="p-1 m-1 border">
+                                    <a href="#" class="handle-click" data-type="confirm"
+                                       title="Удалить"
+                                       data-title="Удаление"
+                                       data-message="Вы уверены, что хотите удалить?"
+                                       data-cancel-text="Нет"
+                                       data-confirm-text="Да, удалить" data-url="{{ route($config('route.deleteMedia'), ['id' => $item->id, 'mediaId' => $media->id ]) }}"
+                                       style="text-align: center; color: red"
+                                    >
+                                        <i class="la la-trash"></i> Удалить
+                                    </a>
+                                </div>
                             @endforeach
                         </fieldset>
                     @endif

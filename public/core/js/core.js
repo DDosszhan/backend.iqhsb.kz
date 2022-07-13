@@ -561,7 +561,13 @@ let app = {
             app.vars.editor = edt;
             let url = $('meta[name="editor-objects-url"]').attr('content');
             app.functions.ajaxGet({url: url});
+        },
+
+        removeMediaFromGallery: function(params)
+        {
+            $(params.selector).fadeOut(function () {
+                $(this).remove();
+            });
         }
     }
-
 }

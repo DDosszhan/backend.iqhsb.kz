@@ -7,6 +7,7 @@ use App\Repositories\Admin\PageRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
+use StarterKit\Core\Exceptions\ItemNotFoundException;
 use StarterKit\Core\Traits\AdminBase;
 
 class PageController extends Controller
@@ -33,6 +34,7 @@ class PageController extends Controller
                 'edit' => 'admin.pages.edit',
                 'update' => 'admin.pages.update',
                 'delete' => 'admin.pages.delete',
+                'deleteMedia' => 'admin.pages.deleteMedia',
             ],
             'view' => [
                 'index' => 'admin.pages.index',
@@ -103,6 +105,25 @@ class PageController extends Controller
     {
         return array_merge($this->validationRules(), [
             'image' => ['nullable', 'image'],
+        ]);
+    }
+
+    public function deleteMedia(int $id, int $mediaId): JsonResponse
+    {
+        $media = $this->findById($id)->getMedia('gallery')->where('id', $mediaId)->first();
+        if (!$media) {
+            throw new ItemNotFoundException("Медиа не найдено в галерее с id ='$mediaId'");
+        }
+        $media->delete();
+
+        return response()->json([
+            'functions' => [
+                'removeMediaFromGallery' => [
+                    'params' => [
+                        'selector' => '#gallery-media-' . $media->id,
+                    ]
+                ]
+            ]
         ]);
     }
 }
