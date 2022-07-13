@@ -16,7 +16,7 @@
 
 @section('table_head')
     <th>Имя</th>
-    <th width="200">Логотип</th>
+    <th width="200">Фото</th>
     <th>Название компании</th>
     <th>Текст</th>
 @endsection
