@@ -25,7 +25,10 @@ class PageRepository extends BaseApiRepository
             throw new ModelNotFoundException("Model with page '$slug' Not Found");
         }
 
-        $page->image_url = $page->getFirstMediaUrl('default');
+        $page->image_url = $page->getFirstMedia() ? $page->getFirstMediaUrl('default') : null;
+        $page->makeHidden('media');
+
+        $page->gallery = $page->getMedia('gallery')->pluck('original_url');
         $page->makeHidden('media');
 
         return $page;
