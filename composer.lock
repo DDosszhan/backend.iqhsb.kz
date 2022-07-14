@@ -1703,16 +1703,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.19.0",
+            "version": "v9.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "bbce25bd823133f6a5a724f2d62680b711f1d0df"
+                "reference": "c99868f1c9bf2f5d250993121838db905591864f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/bbce25bd823133f6a5a724f2d62680b711f1d0df",
-                "reference": "bbce25bd823133f6a5a724f2d62680b711f1d0df",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c99868f1c9bf2f5d250993121838db905591864f",
+                "reference": "c99868f1c9bf2f5d250993121838db905591864f",
                 "shasum": ""
             },
             "require": {
@@ -1878,7 +1878,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-06-28T14:33:19+00:00"
+            "time": "2022-07-13T13:26:22+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -4700,17 +4700,17 @@
         },
         {
             "name": "starter-kit/core",
-            "version": "v4.0.9",
+            "version": "v4.0.10",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.ibecsystems.kz:starter-kit/core.git",
-                "reference": "7948a144bba24b3c3ed5d53a119f104c344590e8"
+                "reference": "f869ff4c008190b0bccb99b89a45c96860e66835"
             },
             "dist": {
                 "type": "tar",
-                "url": "https://gitlab.ibecsystems.kz/dist/starter-kit/core/starter-kit-core-7948a144bba24b3c3ed5d53a119f104c344590e8-zip-b19a42.tar",
-                "reference": "7948a144bba24b3c3ed5d53a119f104c344590e8",
-                "shasum": "edcd096c95dc141558d23b5223d1df3cbf05ca8a"
+                "url": "https://gitlab.ibecsystems.kz/dist/starter-kit/core/starter-kit-core-f869ff4c008190b0bccb99b89a45c96860e66835-zip-88ea00.tar",
+                "reference": "f869ff4c008190b0bccb99b89a45c96860e66835",
+                "shasum": "a0fd77a4e97f5c512b2de67395230d0ebfa8d57a"
             },
             "require": {
                 "buzz/laravel-google-captcha": "2.*",
@@ -4746,7 +4746,7 @@
                 }
             ],
             "description": "A packages StarterKit iBEC Systems",
-            "time": "2022-07-13T12:11:14+09:00"
+            "time": "2022-07-14T14:06:52+09:00"
         },
         {
             "name": "starter-kit/news",
