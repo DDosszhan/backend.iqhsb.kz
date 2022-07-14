@@ -24,7 +24,7 @@ use App\Http\Controllers\Admin\SocialNetworkController;
 */
 
 Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web', 'adminMiddleware']], function () {
-    Route::redirect('/', config('project.admin_prefix') . '/news');
+    Route::redirect('/', '/' . config('project.admin_prefix') . '/articles');
 
     Route::group(['prefix' => 'faqs'], function () {
         Route::get('/', [FaqController::class, 'index'])->name('admin.faqs.index');
@@ -139,5 +139,14 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', 'edit')->name('admin.example_files.edit');
         Route::post('/{id}/update', 'update')->name('admin.example_files.update');
         Route::get('/{id}/delete', 'delete')->name('admin.example_files.delete');
+    });
+    Route::group(['prefix' => 'articles', 'controller' => \App\Http\Controllers\Admin\ArticleController::class], function () {
+        Route::get('/', 'index')->name('admin.articles.index');
+        Route::get('/list', 'list')->name('admin.articles.list');
+        Route::get('/create', 'create')->name('admin.articles.create');
+        Route::post('/store', 'store')->name('admin.articles.store');
+        Route::get('/{id}/edit', 'edit')->name('admin.articles.edit');
+        Route::post('/{id}/update', 'update')->name('admin.articles.update');
+        Route::get('/{id}/delete', 'delete')->name('admin.articles.delete');
     });
 });

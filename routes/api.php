@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LocalizationController;
-use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\GraduateAchievementController;
 use App\Http\Controllers\Api\QuestionnaireController;
@@ -26,8 +26,8 @@ use App\Http\Controllers\Api\SocialNetworkController;
 |
 */
 
-Route::get('/news', [NewsController::class, 'index'])->name('api.news.index');
-Route::get('/news/{slug}', [NewsController::class, 'show'])->name('api.news.show');
+Route::get('/news', [ArticleController::class, 'index'])->name('api.news.index');
+Route::get('/news/{slug}', [ArticleController::class, 'show'])->name('api.news.show');
 Route::get('/faqs', [FaqController::class, 'index'])->name('api.faqs.index');
 Route::get('/graduate-achievements', [GraduateAchievementController::class, 'index'])->name('api.graduate-achievements.index');
 Route::post('/questionnaires', [QuestionnaireController::class, 'store'])->name('api.questionnaires.store');
