@@ -27,6 +27,7 @@ return new class extends Migration {
                 'title' => 'О школе',
                 'blocks' => null,
                 'settings' => [
+                    'has_image' => false,
                     'has_gallery' => true,
                     'gallery_width' => 352,
                     'block_count' => 0,
@@ -75,6 +76,7 @@ return new class extends Migration {
                     ],
                 ],
                 'settings' => [
+                    'has_image' => false,
                     'has_gallery' => false,
                     'gallery_width' => false,
                     'block_count' => 3,

@@ -65,21 +65,23 @@
             </div>
         @endforeach
 
-        <fieldset>
-            <legend>Изображение</legend>
-            <div class="form-group">
-                <input type="file" class="form-input-image-media" id="image" name="image"
-                       accept="image/x-png,image/gif,image/jpeg,image/svg+xml">
-                <p class="help-block"></p>
+        @if(isset($item) && $item->getConfig('has_image'))
+            <fieldset>
+                <legend>Изображение</legend>
+                <div class="form-group">
+                    <input type="file" class="form-input-image-media" id="image" name="image"
+                           accept="image/x-png,image/gif,image/jpeg,image/svg+xml">
+                    <p class="help-block"></p>
 
-                @if(isset($item) && $item->getFirstMedia('default'))
-                    <fieldset>
-                        <legend>Текущее фото</legend>
-                        <img width="150" src="{{ $item->getFirstMedia('default')->getFullUrl() }}">
-                    </fieldset>
-                @endif
-            </div>
-        </fieldset>
+                    @if(isset($item) && $item->getFirstMedia('default'))
+                        <fieldset>
+                            <legend>Текущее фото</legend>
+                            <img width="150" src="{{ $item->getFirstMedia('default')->getFullUrl() }}">
+                        </fieldset>
+                    @endif
+                </div>
+            </fieldset>
+        @endif
 
         @if(isset($item) && $item->getConfig('has_gallery'))
             <fieldset>
