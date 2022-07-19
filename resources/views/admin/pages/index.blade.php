@@ -41,7 +41,6 @@
                         <th width="50" class="text-center">#</th>
 
                         <!-- table columns -->
-                        <th width="200">Изображение</th>
                         <th>Заголовок</th>
 
                         <th class="text-center" width="100"><i class="fa fa-bars" aria-hidden="true"></i></th>
