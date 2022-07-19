@@ -7,6 +7,7 @@ use App\Repositories\Admin\PageRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
+use Spatie\Image\Image;
 use StarterKit\Core\Exceptions\ItemNotFoundException;
 use StarterKit\Core\Traits\AdminBase;
 
@@ -93,9 +94,12 @@ class PageController extends Controller
         $validatedData = $this->validateUpdateRequest($request->all());
         $this->item->update($validatedData);
         if ($request->hasFile('gallery')) {
-            $this->item->addMultipleMediaFromRequest(['gallery'])->each(function ($fileAdder) {
-                $fileAdder->toMediaCollection('gallery');
-            });
+            foreach ($request->file('gallery') as $uploadedFile) {
+                if ($width = $this->item->getConfig('gallery_width')) {
+                    Image::load($uploadedFile->getRealPath())->width($width)->save();
+                }
+                $this->item->addMedia($uploadedFile)->toMediaCollection('gallery');
+            }
         }
 
         return $this->updateResponse();

@@ -28,6 +28,7 @@ return new class extends Migration {
                 'blocks' => null,
                 'settings' => [
                     'has_gallery' => true,
+                    'gallery_width' => 352,
                     'block_count' => 0,
                     'removable' => false,
                 ],
@@ -75,6 +76,7 @@ return new class extends Migration {
                 ],
                 'settings' => [
                     'has_gallery' => false,
+                    'gallery_width' => false,
                     'block_count' => 3,
                     'removable' => false,
                 ],
