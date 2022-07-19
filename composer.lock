@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36c71b9a99549be9ad231280e4524108",
+    "content-hash": "07843b53c70d49a10a13ba246c4c9763",
     "packages": [
         {
             "name": "brick/math",
@@ -4747,50 +4747,6 @@
             ],
             "description": "A packages StarterKit iBEC Systems",
             "time": "2022-07-14T14:06:52+09:00"
-        },
-        {
-            "name": "starter-kit/news",
-            "version": "v4.0.1",
-            "source": {
-                "type": "git",
-                "url": "git@gitlab.ibecsystems.kz:starter-kit/news.git",
-                "reference": "d25247f9d19ebb38b921cb076f521bfe972490b7"
-            },
-            "dist": {
-                "type": "tar",
-                "url": "https://gitlab.ibecsystems.kz/dist/starter-kit/news/starter-kit-news-d25247f9d19ebb38b921cb076f521bfe972490b7-zip-a18e0c.tar",
-                "reference": "d25247f9d19ebb38b921cb076f521bfe972490b7",
-                "shasum": "15a89c43d67bdb5839f2742c2cf950943f6512f1"
-            },
-            "require": {
-                "cviebrock/eloquent-sluggable": "^9.0",
-                "spatie/laravel-translatable": "^6.0",
-                "starter-kit/core": "4.0.*"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "StarterKit\\News\\NewsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "StarterKit\\News\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bishkek Development Team",
-                    "email": "rihasultanov@gmail.com"
-                }
-            ],
-            "description": "News for StarterKit Core",
-            "time": "2022-06-22T13:54:55+06:00"
         },
         {
             "name": "symfony/console",

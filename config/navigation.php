@@ -41,17 +41,6 @@ return [
                 ],
                 [
                     'is_tree' => false,
-                    'title' => 'Новости (будет удален)',
-                    'route_name' => 'admin.news',
-                    'item_active_on' => "$prefix/news*",
-                    'icon' => 'la la-bullhorn',
-                    'roles' => [
-                        'admin',
-                        'manager',
-                    ],
-                ],
-                [
-                    'is_tree' => false,
                     'title' => 'Страницы',
                     'route_name' => 'admin.pages.index',
                     'item_active_on' => "$prefix/pages*",
