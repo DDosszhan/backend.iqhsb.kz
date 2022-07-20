@@ -54,6 +54,8 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [GraduateAchievementController::class, 'edit'])->name('admin.graduate-achievements.edit');
         Route::post('/{id}/update', [GraduateAchievementController::class, 'update'])->name('admin.graduate-achievements.update');
         Route::get('/{id}/delete', [GraduateAchievementController::class, 'delete'])->name('admin.graduate-achievements.delete');
+        Route::get('/{id}/up', [GraduateAchievementController::class, 'positionUp'])->name('admin.graduate-achievements.up');
+        Route::get('/{id}/down', [GraduateAchievementController::class, 'positionDown'])->name('admin.graduate-achievements.down');
     });
     Route::group(['prefix' => 'consultation-requests'], function () {
         Route::get('/', [ConsultationRequestController::class, 'index'])->name('admin.consultation-requests.index');

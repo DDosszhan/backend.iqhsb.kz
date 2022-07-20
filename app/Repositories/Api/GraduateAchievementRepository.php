@@ -24,7 +24,7 @@ class GraduateAchievementRepository extends BaseApiRepository
             'year',
             'city',
         ])
-            ->orderBy('id', 'desc')
+            ->orderBy('position')
             ->with('university', function ($query) {
                 $query->select(['id', 'name']);
             })

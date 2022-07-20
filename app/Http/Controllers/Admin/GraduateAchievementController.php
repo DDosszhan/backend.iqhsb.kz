@@ -69,6 +69,7 @@ class GraduateAchievementController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validatedData = $this->validateStoreRequest($request->all());
+        $validatedData['position'] = $this->repository->getLastPosition();
         $this->item = $this->repository->getModel()->create($validatedData);
         $this->item->addMedia($request->file('cropper'))->toMediaCollection('default');
 
@@ -132,5 +133,104 @@ class GraduateAchievementController extends Controller
                 ]
             ]
         ]);
+    }
+
+    public function list(): JsonResponse
+    {
+        $this->items = $this->repository->getModel()->orderBy('position')->paginate(100);
+
+        return $this->listResponse();
+    }
+
+    public function storeResponse(): JsonResponse
+    {
+        return response()->json([
+            'functions' => [
+                'closeModal' => [
+                    'params' => [
+                        'modal' => 'largeModal',
+                    ]
+                ],
+                'appendTableRow' => [
+                    'params' => [
+                        'selector' => '.ajax-content',
+                        'content' => view($this->config('view.item'), [
+                            'item' => $this->item,
+                            'config' => $this->config(),
+                        ])->render()
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    public function positionUp(int $id)
+    {
+        $items = $this->repository->getModel()->orderBy('position')->get();
+
+        $position = 1;
+        $skipId = null;
+        $lastItemKey = count($items) - 1;
+        foreach ($items as $k => $item) {
+            if ($skipId == $item->id) {
+                $position++;
+                continue;
+            }
+
+            $item->position = $position;
+            $item->save();
+
+            if ($item->id == $id) {
+                if ($position < count($items)) {
+                    $item->position = $position - 1;
+                    $item->save();
+                }
+                if (isset($items[$k - 1])) {
+                    $items[$k - 1]->position = $position;
+                    $items[$k - 1]->save();
+                    $skipId = $items[$k - 1]->id;
+                    if($k == $lastItemKey) {
+                        $skipId = $items[$k - 1]->id;
+                        $items[$k - 1]->position = $items[$k]->position;
+                        $items[$k]->position = $position - 1;
+                        $items[$k]->save();
+                    }
+                }
+            }
+
+            $position++;
+        }
+    }
+
+    public function positionDown(int $id)
+    {
+        $items = $this->repository->getModel()->orderBy('position')->get();
+
+        $position = 1;
+        $skipId = null;
+        foreach ($items as $k => $item) {
+            if ($skipId == $item->id) {
+                $position++;
+                continue;
+            }
+
+            $item->position = $position;
+            $item->save();
+
+            if ($item->id == $id) {
+                if ($position < count($items)) {
+                    $item->position = $position + 1;
+                    $item->save();
+                }
+
+                if (isset($items[$k + 1])) {
+                    $items[$k + 1]->position = $position;
+                    $items[$k + 1]->save();
+                    $skipId = $items[$k + 1]->id;
+                }
+            }
+
+            $position++;
+        }
     }
 }

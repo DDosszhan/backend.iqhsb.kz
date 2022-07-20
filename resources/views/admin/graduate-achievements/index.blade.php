@@ -30,4 +30,9 @@
     <th>Университет</th>
     <th>Год</th>
     <th>Город</th>
+    <th width="100" class="text-center"><i class="la la-sort-amount-asc"></i></th>
 @endsection
+
+@push('modules')
+    <script src="/faq/js/sortManagement.js" type="text/javascript"></script>
+@endpush
