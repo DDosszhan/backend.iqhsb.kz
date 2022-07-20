@@ -95,7 +95,7 @@ class PartnerController extends Controller
 
     public function list(): JsonResponse
     {
-        $this->items = $this->repository->getModel()->orderBy('position')->paginate();
+        $this->items = $this->repository->getModel()->orderBy('position')->paginate(100);
 
         return $this->listResponse();
     }
