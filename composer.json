@@ -23,6 +23,7 @@
         "starter-kit/core": "^4.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.7",
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/lang": "^10.9",
         "laravel/sail": "^1.0.1",
