@@ -22,7 +22,7 @@ class CalendarEventRepository extends BaseApiRepository
             'start_date',
             'end_date',
         ])
-            ->orderBy('id', 'desc')
+            ->orderBy('start_date')
             ->get()
             ->each(function ($model) {
                 $model->image_url = $model->getFirstMediaUrl('default');
