@@ -16,7 +16,7 @@
 
 @section('table_head')
     <th>Вопрос</th>
-    <th>Активен</th>
+    <th class="text-center" width="70">Активен</th>
     <th width="100" class="text-center"><i class="la la-sort-amount-asc"></i></th>
 {{--    <th>Порядок</th>--}}
 @endsection

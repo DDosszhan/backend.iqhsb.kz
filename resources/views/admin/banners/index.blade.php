@@ -43,6 +43,7 @@
                         <!-- table columns -->
                         <th>Заголовок</th>
                         <th width="200">Изображение</th>
+                        <th width="100" class="text-center"><i class="la la-sort-amount-asc"></i></th>
 
                         <th class="text-center" width="100"><i class="fa fa-bars" aria-hidden="true"></i></th>
                     </tr>
@@ -55,3 +56,7 @@
         <!--end::Section-->
     </div>
 @stop
+
+@push('modules')
+    <script src="/faq/js/sortManagement.js" type="text/javascript"></script>
+@endpush
