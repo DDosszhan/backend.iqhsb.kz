@@ -101,6 +101,8 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [PartnerController::class, 'edit'])->name('admin.partners.edit');
         Route::post('/{id}/update', [PartnerController::class, 'update'])->name('admin.partners.update');
         Route::get('/{id}/delete', [PartnerController::class, 'delete'])->name('admin.partners.delete');
+        Route::get('/{id}/up', [PartnerController::class, 'positionUp'])->name('admin.partners.up');
+        Route::get('/{id}/down', [PartnerController::class, 'positionDown'])->name('admin.partners.down');
     });
     Route::group(['prefix' => 'banners', 'controller' => BannerController::class], function () {
         Route::get('/', 'index')->name('admin.banners.index');

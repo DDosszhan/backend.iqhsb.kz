@@ -11,6 +11,10 @@
     </td>
     <td class="align-middle">{{ $item->company }}</td>
     <td class="align-middle">{{ $item->description }}</td>
+    <td class="align-middle text-center">
+        <a href="#" data-url="{{route('admin.partners.up', ['id' => $item->id])}}" data-type="up" class="change-position"><i class="la la-sort-up"></i></a>
+        <a href="#" data-url="{{route('admin.partners.down', ['id' => $item->id])}}" data-type="down" class="change-position"><i class="la la-sort-down"></i></a>
+    </td>
 
     <td class="text-center align-middle">
         <a href="#" data-url="{{ route($config('route.edit'), ['id' => $item->id ]) }}" class="handle-click" data-type="modal" data-modal="largeModal">
