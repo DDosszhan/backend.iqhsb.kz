@@ -194,6 +194,10 @@ let app = {
             $(params.selector).find('tbody').prepend(params.content);
         },
 
+        appendTableRow: function (params) {
+            $(params.selector).find('tbody').append(params.content);
+        },
+
         updateTableRow: function (params) {
             $(params.selector).find(params.row).fadeOut(function () {
                 $(this).replaceWith(params.content);

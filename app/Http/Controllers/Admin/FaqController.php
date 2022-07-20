@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\FaqRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use StarterKit\Core\Traits\AdminBase;
 
 class FaqController extends Controller
@@ -60,6 +61,38 @@ class FaqController extends Controller
         $this->items = $this->repository->getModel()->orderBy('position')->paginate();
 
         return $this->listResponse();
+    }
+
+    public function store(Request $request): JsonResponse
+    {
+        $validatedData = $this->validateStoreRequest($request->all());
+        $validatedData['position'] = $this->repository->getLastPosition();
+
+        $this->item = $this->repository->getModel()->create($validatedData);
+
+        return $this->storeResponse();
+    }
+
+    public function storeResponse(): JsonResponse
+    {
+        return response()->json([
+            'functions' => [
+                'closeModal' => [
+                    'params' => [
+                        'modal' => 'largeModal',
+                    ]
+                ],
+                'appendTableRow' => [
+                    'params' => [
+                        'selector' => '.ajax-content',
+                        'content' => view($this->config('view.item'), [
+                            'item' => $this->item,
+                            'config' => $this->config(),
+                        ])->render()
+                    ]
+                ]
+            ]
+        ]);
     }
 
     public function positionUp(int $id)
