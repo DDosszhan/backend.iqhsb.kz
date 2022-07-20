@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Faq extends Model
+class Faq extends BaseModel
 {
     use HasTranslations;
 

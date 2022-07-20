@@ -5,9 +5,8 @@ namespace App\Models;
 use App\ModelFilters\ConsultationRequestFilter;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class ConsultationRequest extends Model
+class ConsultationRequest extends BaseModel
 {
     use HasFactory;
     use Filterable;

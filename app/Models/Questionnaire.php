@@ -5,9 +5,8 @@ namespace App\Models;
 use App\ModelFilters\QuestionnaireFilter;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Questionnaire extends Model
+class Questionnaire extends BaseModel
 {
     use HasFactory;
     use Filterable;
