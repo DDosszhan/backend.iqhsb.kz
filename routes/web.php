@@ -112,8 +112,6 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', 'edit')->name('admin.banners.edit');
         Route::post('/{id}/update', 'update')->name('admin.banners.update');
         Route::get('/{id}/delete', 'delete')->name('admin.banners.delete');
-        Route::get('/{id}/up', 'positionUp')->name('admin.banners.up');
-        Route::get('/{id}/down', 'positionDown')->name('admin.banners.down');
     });
     Route::group(['prefix' => 'social-networks', 'controller' => SocialNetworkController::class], function () {
         Route::get('/', 'index')->name('admin.social-networks.index');
