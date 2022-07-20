@@ -22,7 +22,7 @@ class PartnerRepository extends BaseApiRepository
             'company',
             'description',
         ])
-            ->orderBy('id', 'desc')
+            ->orderBy('position')
             ->get()
             ->each(function ($model) {
                 $model->image_url = $model->getFirstMediaUrl('default');
