@@ -92,6 +92,8 @@ Route::group(['prefix' => config('project.admin_prefix'), 'middleware' => ['web'
         Route::get('/{id}/edit', [TeacherController::class, 'edit'])->name('admin.teachers.edit');
         Route::post('/{id}/update', [TeacherController::class, 'update'])->name('admin.teachers.update');
         Route::get('/{id}/delete', [TeacherController::class, 'delete'])->name('admin.teachers.delete');
+        Route::get('/{id}/up', [TeacherController::class, 'positionUp'])->name('admin.teachers.up');
+        Route::get('/{id}/down', [TeacherController::class, 'positionDown'])->name('admin.teachers.down');
     });
     Route::group(['prefix' => 'partners'], function () {
         Route::get('/', [PartnerController::class, 'index'])->name('admin.partners.index');

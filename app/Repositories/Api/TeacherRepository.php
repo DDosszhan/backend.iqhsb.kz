@@ -21,7 +21,7 @@ class TeacherRepository extends BaseApiRepository
             'name',
             'position',
         ])
-            ->orderBy('id', 'desc')
+            ->orderBy('order')
             ->get()
             ->each(function ($model) {
                 $model->image_url = $model->getFirstMediaUrl('default');
