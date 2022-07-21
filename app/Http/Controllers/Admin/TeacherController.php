@@ -124,37 +124,37 @@ class TeacherController extends Controller
     {
         $items = $this->repository->getModel()->orderBy('order')->get();
 
-        $position = 1;
+        $order = 1;
         $skipId = null;
         $lastItemKey = count($items) - 1;
         foreach ($items as $k => $item) {
             if ($skipId == $item->id) {
-                $position++;
+                $order++;
                 continue;
             }
 
-            $item->position = $position;
+            $item->order = $order;
             $item->save();
 
             if ($item->id == $id) {
-                if ($position < count($items)) {
-                    $item->position = $position - 1;
+                if ($order < count($items)) {
+                    $item->order = $order - 1;
                     $item->save();
                 }
                 if (isset($items[$k - 1])) {
-                    $items[$k - 1]->position = $position;
+                    $items[$k - 1]->order = $order;
                     $items[$k - 1]->save();
                     $skipId = $items[$k - 1]->id;
                     if($k == $lastItemKey) {
                         $skipId = $items[$k - 1]->id;
-                        $items[$k - 1]->position = $items[$k]->position;
-                        $items[$k]->position = $position - 1;
+                        $items[$k - 1]->order = $items[$k]->order;
+                        $items[$k]->order = $order - 1;
                         $items[$k]->save();
                     }
                 }
             }
 
-            $position++;
+            $order++;
         }
     }
 
@@ -162,31 +162,31 @@ class TeacherController extends Controller
     {
         $items = $this->repository->getModel()->orderBy('order')->get();
 
-        $position = 1;
+        $order = 1;
         $skipId = null;
         foreach ($items as $k => $item) {
             if ($skipId == $item->id) {
-                $position++;
+                $order++;
                 continue;
             }
 
-            $item->position = $position;
+            $item->order = $order;
             $item->save();
 
             if ($item->id == $id) {
-                if ($position < count($items)) {
-                    $item->position = $position + 1;
+                if ($order < count($items)) {
+                    $item->order = $order + 1;
                     $item->save();
                 }
 
                 if (isset($items[$k + 1])) {
-                    $items[$k + 1]->position = $position;
+                    $items[$k + 1]->order = $order;
                     $items[$k + 1]->save();
                     $skipId = $items[$k + 1]->id;
                 }
             }
 
-            $position++;
+            $order++;
         }
     }
 }
