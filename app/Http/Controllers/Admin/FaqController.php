@@ -51,7 +51,7 @@ class FaqController extends Controller
             'question' => ['required', "array:$locales"],
             "question.$defaultLocale" => ['required', 'string', 'max:255'],
             'answer' => ['required', "array:$locales"],
-            "answer.$defaultLocale" => ['required', 'string', 'max:255'],
+            "answer.$defaultLocale" => ['required', 'string', 'max:2000'],
             'active' => ['sometimes', 'required', 'accepted'],
         ];
     }
