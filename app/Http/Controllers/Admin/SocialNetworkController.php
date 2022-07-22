@@ -44,7 +44,7 @@ class SocialNetworkController extends Controller
     {
         return [
 //            'name' => ['required', 'string', 'max:255'],
-            'url' => ['required', 'string', 'max:255', 'url'],
+            'url' => ['required', 'string', 'max:1024', 'url'],
         ];
     }
 }
