@@ -24,7 +24,7 @@ class QuestionnaireController extends Controller
         $validatedData = $request->validate([
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
-            'date_of_birth' => ['required', 'string', 'max:255'],
+            'date_of_birth' => ['required', 'date'],
             'grade' => ['required', new Enum(QuestionnaireGrade::class)],
             'language' => ['required', new Enum(QuestionnaireLanguage::class)],
             'school' => ['required', 'string', 'max:255'],
