@@ -11,7 +11,7 @@
 
 ## Installation
 
-1. `git clone <repo>`
+1. `git clone git@gitlab.ibecsystems.kz:iqanat/iqanat-backend.git && cd iqanat-backend`
 2. `composer install`
 3. `php artisan migrate`
 4. `php artisan core:create-roles-and-permissions --tty`
@@ -28,3 +28,10 @@
 php artisan s
 ```
 то же самое, что и `php artisan serve --port=8001`
+
+## API docs
+
+Документация для API находится в файле `./openapi.yml`, что посмотреть, можно:
+- открыть этот файл в [гитлабе](https://gitlab.ibecsystems.kz/iqanat/iqanat-backend/-/blob/master/openapi.yaml)
+- скопировать и вставить в [Swagger Editor](https://editor.swagger.io)
+- скопировать и вставить в Postman API
