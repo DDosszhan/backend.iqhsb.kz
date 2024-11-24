@@ -63,6 +63,16 @@ return new class extends Migration {
                     'cropper_height' => 442,
                 ],
             ],
+            [
+                'slug' => 'vacancies',
+                'title' => 'Вакансии',
+                'settings' => [
+                    'has_content' => false,
+                    'has_button' => false,
+                    'cropper_width' => 1120,
+                    'cropper_height' => 442,
+                ],
+            ],
         ];
         $insertData = [];
         foreach ($data as $element) {

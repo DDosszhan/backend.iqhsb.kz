@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\UniversityController;
 use App\Http\Controllers\Api\SocialNetworkController;
+use App\Http\Controllers\Api\JobApplicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::get('/pages/{slug}', [PageController::class, 'show'])->name('api.pages.sh
 Route::get('/universities', [UniversityController::class, 'index'])->name('api.universities.index');
 Route::get('/social-networks', [SocialNetworkController::class, 'index'])->name('api.social-networks.index');
 Route::get('/files/{slug}', [\App\Http\Controllers\Api\ExampleFileController::class, 'binary'])->name('api.example_files.binary');
+Route::post('/apply', [JobApplicationController::class, 'apply']);
 
 Route::group(['prefix' => 'localization'], function () {
     Route::get('/i18n/{locale}', [LocalizationController::class, 'i18n']);
